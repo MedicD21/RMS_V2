@@ -11,7 +11,13 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      // Proxy Replicate calls in dev to avoid CORS (native Capacitor doesn't need this)
+      // Proxy OpenRouter calls in dev to avoid CORS
+      '/openrouter': {
+        target: 'https://openrouter.ai',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/openrouter/, ''),
+      },
+      // Proxy Replicate calls in dev to avoid CORS
       '/replicate': {
         target: 'https://api.replicate.com',
         changeOrigin: true,

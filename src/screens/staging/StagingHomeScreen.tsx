@@ -13,14 +13,14 @@ export function StagingHomeScreen() {
       <div
         className='px-5'
         style={{
-          paddingTop: `calc(env(safe-area-inset-top) + 16px)`,
-          paddingBottom: 16,
+          paddingTop: `calc(env(safe-area-inset-top) + 30px)`,
+          paddingBottom: `calc(env(safe-area-inset-bottom) + 30px)`,
         }}
       >
         <div className='flex items-center gap-3'>
-          <AppLogo size={32} />
+          <AppLogo size={50} />
           <h1
-            className='text-2xl font-extrabold'
+            className='text-3xl font-extrabold'
             style={{ color: "var(--text-primary)" }}
           >
             Home Staging
@@ -65,7 +65,6 @@ export function StagingHomeScreen() {
           style={{
             background: "var(--accent)",
             color: "var(--text-primary)",
-            border: "3px solid var(--text-secondary)",
           }}
         >
           <svg width='20' height='20' viewBox='0 0 24 24' fill='none'>

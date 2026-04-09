@@ -73,7 +73,7 @@ export function SpaceDetailScreen() {
             <path
               d='M15 18l-6-6 6-6'
               stroke='var(--text-primary)'
-              strokeWidth='2'
+              strokeWidth='3'
               strokeLinecap='round'
               strokeLinejoin='round'
             />
@@ -306,7 +306,7 @@ export function SpaceDetailScreen() {
 
       {/* Action buttons */}
       <div
-        className='px-5 pb-1 safe-bottom flex gap-3'
+        className='px-5 pb-1 pt-1 safe-bottom flex gap-3'
         style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 5px)` }}
       >
         <button

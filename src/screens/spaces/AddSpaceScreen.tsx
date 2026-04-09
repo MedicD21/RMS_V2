@@ -137,6 +137,9 @@ export function AddSpaceScreen() {
                       ? "var(--text-secondary)"
                       : "var(--text-primary)",
                     transform: active ? "scale(1.05)" : "none",
+                    animation: active
+                      ? "fade-in 0.8s ease-out forwards"
+                      : "none",
                   }}
                 >
                   <span className='text-xl'>{ROOM_ICONS[type]}</span>

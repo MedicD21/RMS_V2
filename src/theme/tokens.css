@@ -25,7 +25,7 @@
 }
 
 [data-theme="light"] {
-  --bg: #fff0d7;
+  --bg: #f7f3eb;
   --bg-deep: #79285b;
   --surface: #557980;
   --surface-raised: #f7c7a8;
@@ -34,7 +34,7 @@
   --accent-muted: rgba(212, 130, 42, 0.12);
   --text-primary: #052d37;
   --text-secondary: #050505;
-  --text-muted: #121313;
+  --text-muted: #148787;
   --border: rgba(27, 47, 58, 0.12);
   --score-low: #df8383;
   --score-mid: #e6f180;

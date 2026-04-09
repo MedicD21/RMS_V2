@@ -70,14 +70,14 @@ export function CompareScansScreen() {
             <path
               d='M15 18l-6-6 6-6'
               stroke='var(--text-primary)'
-              strokeWidth='2'
+              strokeWidth='3'
               strokeLinecap='round'
               strokeLinejoin='round'
             />
           </svg>
         </button>
         <h1
-          className='text-xl font-bold'
+          className='text-3xl font-bold'
           style={{ color: "var(--text-primary)" }}
         >
           Compare Scans

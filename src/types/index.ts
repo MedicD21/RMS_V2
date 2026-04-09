@@ -90,7 +90,7 @@ export interface AppSettings {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   theme: 'system',
-  openRouterModel: 'google/gemini-2.0-flash-001',
+  openRouterModel: 'anthropic/claude-3.5-haiku',
   replicateModel: 'black-forest-labs/flux-1.1-pro',
   amazonConfigured: false,
 }

@@ -1,7 +1,10 @@
 import { SPACES_SYSTEM_PROMPT, STAGING_SYSTEM_PROMPT } from './prompts'
 import type { SpaceAnalysisResponse, StagingAnalysisResponse } from '@/types'
 
-const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions'
+const OPENROUTER_API_URL = import.meta.env.DEV
+  ? '/openrouter/api/v1/chat/completions'
+  : 'https://openrouter.ai/api/v1/chat/completions'
+
 const API_KEY = import.meta.env.VITE_OPENROUTER_API_KEY as string
 
 async function callOpenRouter(
@@ -9,6 +12,10 @@ async function callOpenRouter(
   systemPrompt: string,
   imageDataUrl: string
 ): Promise<string> {
+  if (!API_KEY || API_KEY === 'undefined') {
+    throw new Error('OpenRouter API key is missing. Check that VITE_OPENROUTER_API_KEY is set in .env and restart the dev server.')
+  }
+
   const response = await fetch(OPENROUTER_API_URL, {
     method: 'POST',
     headers: {
@@ -42,6 +49,7 @@ async function callOpenRouter(
 
   if (!response.ok) {
     const err = await response.text()
+    console.error('[OpenRouter]', response.status, err)
     throw new Error(`OpenRouter error ${response.status}: ${err}`)
   }
 
