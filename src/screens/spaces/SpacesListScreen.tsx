@@ -60,7 +60,7 @@ export function SpacesListScreen() {
       >
         <div className="flex items-center justify-between pb-4">
           <div className="flex items-center gap-3">
-            <AppLogo size={32} color="var(--accent)" />
+            <AppLogo size={32} />
             <h1 className="text-2xl font-extrabold" style={{ color: 'var(--text-primary)' }}>
               My Spaces
             </h1>
