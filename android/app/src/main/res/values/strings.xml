@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Reset My Space</string>
+    <string name="title_activity_main">Reset My Space</string>
+    <string name="package_name">com.resetmyspace.app</string>
+    <string name="custom_url_scheme">com.resetmyspace.app</string>
+</resources>
