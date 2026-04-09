@@ -1,0 +1,78 @@
+import { useNavigate } from 'react-router-dom'
+import { useStagingStore } from '@/store/stagingStore'
+import { AppLogo } from '@/components/ui/AppLogo'
+
+export function StagingHomeScreen() {
+  const navigate = useNavigate()
+  const { analyses } = useStagingStore()
+
+  return (
+    <div className="flex flex-col h-full" style={{ background: 'var(--bg)' }}>
+      {/* Header */}
+      <div
+        className="px-5"
+        style={{ paddingTop: `calc(env(safe-area-inset-top) + 16px)`, paddingBottom: 16 }}
+      >
+        <div className="flex items-center gap-3">
+          <AppLogo size={32} color="var(--accent)" />
+          <h1 className="text-2xl font-extrabold" style={{ color: 'var(--text-primary)' }}>
+            Home Staging
+          </h1>
+        </div>
+      </div>
+
+      {/* Hero */}
+      <div className="flex-1 flex flex-col items-center justify-center px-6 gap-8">
+        {/* Icon */}
+        <div
+          className="w-32 h-32 rounded-3xl flex items-center justify-center"
+          style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
+        >
+          <svg width="56" height="56" viewBox="0 0 24 24" fill="none">
+            <rect x="2" y="7" width="20" height="13" rx="2"
+              stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M8 7V5a4 4 0 018 0v2"
+              stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" />
+            <path d="M9 14h6M12 11v6"
+              stroke="var(--accent)" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </div>
+
+        {/* Copy */}
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-extrabold" style={{ color: 'var(--text-primary)' }}>
+            Stage Your Space to Sell
+          </h2>
+          <p className="text-base leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+            Get expert staging suggestions and see your room transformed for listing photos.
+          </p>
+        </div>
+
+        {/* CTA */}
+        <button
+          onClick={() => navigate('/staging/analyze')}
+          className="w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-3 active:opacity-70 transition-opacity"
+          style={{ background: 'var(--accent)', color: '#fff' }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"
+              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="12" cy="13" r="4" stroke="currentColor" strokeWidth="2" />
+          </svg>
+          Analyze a Room
+        </button>
+
+        {/* History link */}
+        {analyses.length > 0 && (
+          <button
+            onClick={() => navigate('/staging/history')}
+            className="text-sm font-semibold active:opacity-60"
+            style={{ color: 'var(--text-secondary)' }}
+          >
+            View History ({analyses.length})
+          </button>
+        )}
+      </div>
+    </div>
+  )
+}
