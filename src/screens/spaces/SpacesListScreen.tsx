@@ -60,7 +60,7 @@ function HomeHealthCard({
   const worstScore = worst.scans[worst.scans.length - 1]?.score ?? 0;
 
   const tip = getTip(avgScore);
-  const { theme } = useTheme();
+  const theme = useTheme();
 
   return (
     <>
