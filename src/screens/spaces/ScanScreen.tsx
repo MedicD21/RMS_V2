@@ -9,6 +9,7 @@ import { generateRoomRendering } from "@/services/imageGen/ImageGenService";
 import { mockAmazonAdapter } from "@/services/amazon/MockAmazonAdapter";
 import { LoadingRing } from "@/components/ui/LoadingRing";
 import type { Scan } from "@/types";
+import photo2 from "/stage.png";
 
 type Step = "capture" | "analyzing" | "rendering" | "done";
 
@@ -115,8 +116,13 @@ export function ScanScreen() {
   return (
     <div className='flex flex-col h-full'>
       <Header onBack={() => navigate(-1)}>New Scan</Header>
+      <img
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[1]'
+        src={photo2}
+        alt='Background'
+      />
 
-      <div className='flex-1 flex flex-col items-center justify-center px-5 gap-6'>
+      <div className='flex-1 flex flex-col items-center justify-center px-5 gap-6 z-[9]'>
         {/* Illustration */}
         <div
           className='w-32 h-32 rounded-3xl flex items-center justify-center'
@@ -125,8 +131,8 @@ export function ScanScreen() {
           <svg width='56' height='56' viewBox='0 0 24 24' fill='none'>
             <path
               d='M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z'
-              stroke='var(--accent)'
-              strokeWidth='1.8'
+              stroke='var(--surface-raised)'
+              strokeWidth='1.5'
               strokeLinecap='round'
               strokeLinejoin='round'
             />
@@ -134,7 +140,7 @@ export function ScanScreen() {
               cx='12'
               cy='13'
               r='4'
-              stroke='var(--accent)'
+              stroke='var(--surface-raised)'
               strokeWidth='1.8'
             />
           </svg>
@@ -168,7 +174,7 @@ export function ScanScreen() {
           </div>
         )}
 
-        <div className='w-full space-y-3'>
+        <div className='w-full space-y-3 z-[99]'>
           <button
             onClick={() => handleCapture("camera")}
             className='w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-3 active:opacity-70 transition-opacity'

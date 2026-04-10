@@ -55,9 +55,9 @@ export function CompareScansScreen() {
     <div className='flex flex-col h-full'>
       <Header onBack={() => navigate(-1)}>Compare Scans</Header>
 
-      <div className='scroll-area flex-1 px-5 pb-6 space-y-5'>
+      <div className='scroll-area flex-1 px-5 pb-6 space-y-5 z-[9]'>
         {/* Scan selectors */}
-        <div className='grid grid-cols-2 gap-3'>
+        <div className='grid grid-cols-2 gap-3 pt-4 z-[9]'>
           {[
             { label: "Before", idx: leftIdx, setIdx: setLeftIdx },
             { label: "After", idx: rightIdx, setIdx: setRightIdx },

@@ -31,7 +31,7 @@
   --surface-raised: #c47a34;
   --accent: #34848d;
   --accent-hover: #79235b80;
-  --accent-muted: #d4822a1f;
+  --accent-muted: rgba(212, 130, 42, 0.122);
   --text-primary: #052d37;
   --text-secondary: #050505;
   --text-muted: #1fecec;

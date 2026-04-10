@@ -6,6 +6,7 @@ import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ROOM_TYPE_LABELS, type Space } from "@/types";
 import photo1 from "/homeorg.png";
 import photo2 from "/stage.png";
+import { useTheme } from "@/hooks/useTheme";
 
 const TIPS: Record<"low" | "mid" | "high", string[]> = {
   low: [
@@ -59,6 +60,7 @@ function HomeHealthCard({
   const worstScore = worst.scans[worst.scans.length - 1]?.score ?? 0;
 
   const tip = getTip(avgScore);
+  const { theme } = useTheme();
 
   return (
     <>
@@ -102,7 +104,7 @@ function HomeHealthCard({
           className='w-full rounded-2xl px-4 py-3 flex items-center gap-3 mb-3 active:opacity-70 transition-opacity text-left'
           style={{
             background: "rgb(210, 43, 43, 0.3)",
-            border: "1px solid var(--score-low)",
+            border: "1px solid #000000",
           }}
         >
           <svg
@@ -124,7 +126,7 @@ function HomeHealthCard({
             <p
               className='text-sm font-bold'
               style={{
-                color: "rgb(210, 43, 43)",
+                color: theme === "dark" ? "var(--bg)" : "var(--text-primary)",
                 textShadow: "0 0 5px #d42b2b80",
               }}
             >
@@ -272,7 +274,7 @@ export function SpacesListScreen() {
       {spaces.length === 0 ? (
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
-        <div className='scroll-area flex-1 px-5 pb-4 z-[3] -mt-[25%]'>
+        <div className='scroll-area flex-1 px-5 pb-4 z-[7] -mt-[25%]'>
           <HomeHealthCard
             spaces={spaces}
             onWorstPress={(id) => navigate(`/spaces/${id}`)}

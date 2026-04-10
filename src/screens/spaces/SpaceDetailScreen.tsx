@@ -7,12 +7,14 @@ import { MetricBar } from "@/components/ui/MetricBar";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { BeforeAfterToggle } from "@/components/ui/BeforeAfterToggle";
 import { readPhotoAsDataUrl } from "@/hooks/useCamera";
+import { useTheme } from "@/hooks/useTheme";
 import { ROOM_TYPE_LABELS } from "@/types";
 
 export function SpaceDetailScreen() {
   const { spaceId } = useParams<{ spaceId: string }>();
   const navigate = useNavigate();
   const { spaces, deleteSpace } = useSpacesStore();
+  const theme = useTheme();
 
   const space = spaces.find((s) => s.id === spaceId);
   const lastScan = space?.scans[space.scans.length - 1];
@@ -62,14 +64,14 @@ export function SpaceDetailScreen() {
           <button
             onClick={() => setShowDeleteConfirm(true)}
             className='w-9 h-9 flex items-center justify-center rounded-xl active:opacity-60'
-            style={{ background: "var(--surface)" }}
+            style={{ background: "var(--score-low)" }}
             aria-label='Delete space'
           >
             <svg width='16' height='16' viewBox='0 0 24 24' fill='none'>
               <path
                 d='M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6'
-                stroke='var(--score-low)'
-                strokeWidth='1.8'
+                stroke='var(--text-primary)'
+                strokeWidth='3'
                 strokeLinecap='round'
                 strokeLinejoin='round'
               />
@@ -81,7 +83,7 @@ export function SpaceDetailScreen() {
       </Header>
 
       {/* Content */}
-      <div className='scroll-area flex-1 px-5 pb-6'>
+      <div className='scroll-area flex-1 px-5 pb-6 z-[7]'>
         {!lastScan ? (
           /* No scans yet */
           <div className='flex flex-col items-center justify-center py-16 gap-6 text-center'>
@@ -204,7 +206,7 @@ export function SpaceDetailScreen() {
                   <div key={i} className='flex gap-3'>
                     <span
                       className='w-2 h-2 rounded-full mt-1.5 flex-shrink-0'
-                      style={{ background: "var(--accent)" }}
+                      style={{ background: "var(--score-high)" }}
                     />
                     <p
                       className='text-sm leading-relaxed'
@@ -236,15 +238,44 @@ export function SpaceDetailScreen() {
                   {lastScan.estimatedMinutes != null && (
                     <div
                       className='flex items-center gap-1.5 px-3 py-1 rounded-full'
-                      style={{ background: "var(--accent-muted)" }}
+                      style={{ background: "var(--score-high)" }}
                     >
-                      <svg width='13' height='13' viewBox='0 0 24 24' fill='none'>
-                        <circle cx='12' cy='12' r='9' stroke='var(--accent)' strokeWidth='2' />
-                        <path d='M12 7v5l3 3' stroke='var(--accent)' strokeWidth='2' strokeLinecap='round' />
+                      <svg
+                        width='16'
+                        height='16'
+                        viewBox='0 0 24 24'
+                        fill='none'
+                      >
+                        <circle
+                          cx='12'
+                          cy='12'
+                          r='9'
+                          stroke={
+                            theme === "dark"
+                              ? "var(--bg)"
+                              : "var(--text-primary)"
+                          }
+                          strokeWidth='2'
+                        />
+                        <path
+                          d='M12 7v5l3 3'
+                          stroke={
+                            theme === "dark"
+                              ? "var(--bg)"
+                              : "var(--text-primary)"
+                          }
+                          strokeWidth='2'
+                          strokeLinecap='round'
+                        />
                       </svg>
                       <span
                         className='text-xs font-semibold'
-                        style={{ color: "var(--accent)" }}
+                        style={{
+                          color:
+                            theme === "dark"
+                              ? "var(--bg)"
+                              : "var(--text-primary)",
+                        }}
                       >
                         {lastScan.estimatedMinutes < 60
                           ? `~${lastScan.estimatedMinutes} min`
@@ -258,8 +289,11 @@ export function SpaceDetailScreen() {
                     <span
                       className='w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5'
                       style={{
-                        background: "var(--accent-muted)",
-                        color: "var(--accent)",
+                        background: "var(--score-high)",
+                        color:
+                          theme === "dark"
+                            ? "var(--bg)"
+                            : "var(--text-primary)",
                       }}
                     >
                       {i + 1}
@@ -336,7 +370,7 @@ export function SpaceDetailScreen() {
 
       {/* Action buttons */}
       <div
-        className='px-5 pb-1 pt-1 safe-bottom flex gap-3'
+        className='px-5 pb-1 pt-1 safe-bottom flex gap-3 z-[7]'
         style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 5px)` }}
       >
         <button
