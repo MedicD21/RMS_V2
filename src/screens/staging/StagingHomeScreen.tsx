@@ -12,13 +12,13 @@ export function StagingHomeScreen() {
     <div className='flex flex-col h-full'>
       <Header>Home Staging</Header>
       <img
-        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[1]'
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[0]'
         src={photo2}
         alt='Background'
       />
 
       {/* Hero */}
-      <div className='flex-1 flex flex-col items-center justify-center px-6 gap-8 z-[4]'>
+      <div className='flex-1 flex flex-col items-center justify-center z-[2]'>
         {/* Icon */}
         <div
           className='w-32 h-32 rounded-3xl flex items-center justify-center'

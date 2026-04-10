@@ -117,12 +117,12 @@ export function ScanScreen() {
     <div className='flex flex-col h-full'>
       <Header onBack={() => navigate(-1)}>New Scan</Header>
       <img
-        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[1]'
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[0]'
         src={photo2}
         alt='Background'
       />
 
-      <div className='flex-1 flex flex-col items-center justify-center px-5 gap-6 z-[9]'>
+      <div className='flex-1 flex flex-col items-center justify-center px-5 gap-6 z-[2]'>
         {/* Illustration */}
         <div
           className='w-32 h-32 rounded-3xl flex items-center justify-center'
@@ -174,7 +174,7 @@ export function ScanScreen() {
           </div>
         )}
 
-        <div className='w-full space-y-3 z-[99]'>
+        <div className='w-full space-y-3 z-[2]'>
           <button
             onClick={() => handleCapture("camera")}
             className='w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-3 active:opacity-70 transition-opacity'

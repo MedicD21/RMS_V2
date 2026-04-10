@@ -199,9 +199,9 @@ function HomeHealthCard({
 
 function EmptyState({ onAdd }: { onAdd: () => void }) {
   return (
-    <div className='flex flex-col items-center justify-center h-full gap-6 px-8 text-center'>
+    <div className='flex flex-col items-center justify-center text-center gap-4 z-[2]'>
       <div
-        className='w-24 h-24 rounded-3xl flex items-center justify-center'
+        className='w-32 h-32 rounded-3xl flex items-center justify-center'
         style={{ background: "var(--surface)" }}
       >
         <svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
@@ -261,7 +261,7 @@ export function SpacesListScreen() {
     <div className='flex flex-col h-full'>
       <Header>Reset My Space</Header>
       <img
-        className='opacity-75 w-screen rounded-4xl border-2 border-slate-500 shadow-xl shadow-slate-500 scale-[140%] overflow-hidden overscroll-auto z-[2]'
+        className='opacity-75 w-screen rounded-4xl border-2 border-slate-500 shadow-xl shadow-slate-500 scale-[140%] overflow-hidden overscroll-auto z-[0]'
         src={photo1}
       ></img>
       <img
@@ -274,7 +274,10 @@ export function SpacesListScreen() {
       {spaces.length === 0 ? (
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
-        <div className='scroll-area flex-1 px-5 pb-4 z-[7] -mt-[25%]'>
+        <div
+          className='scroll-area flex-1 px-5 z-[2] -mt-[25%]'
+          style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 100px)` }}
+        >
           <HomeHealthCard
             spaces={spaces}
             onWorstPress={(id) => navigate(`/spaces/${id}`)}
@@ -361,8 +364,11 @@ export function SpacesListScreen() {
       {spaces.length > 0 && (
         <button
           onClick={() => navigate("/spaces/new")}
-          className='absolute bottom-12 right-8 w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:opacity-70 transition-opacity z-[98]'
-          style={{ background: "var(--accent)" }}
+          className='absolute right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:opacity-70 transition-opacity z-[98]'
+          style={{
+            background: "var(--accent)",
+            bottom: `calc(env(safe-area-inset-bottom) + 80px)`,
+          }}
           aria-label='Add space'
         >
           <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>

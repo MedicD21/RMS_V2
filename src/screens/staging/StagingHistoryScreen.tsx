@@ -31,7 +31,7 @@ export function StagingHistoryScreen() {
           </p>
         </div>
       ) : (
-        <div className='scroll-area flex-1 px-5 pb-6 space-y-3'>
+        <div className='scroll-area flex-1 px-5 space-y-3' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}>
           {sorted.map((a) => (
             <div
               key={a.id}

@@ -14,7 +14,7 @@ export function AppShell() {
           width: "100%",
           height: "100%",
           position: "absolute",
-          zIndex: 4,
+          zIndex: 1,
         }}
       >
         <LightRays
@@ -54,7 +54,7 @@ export function AppShell() {
         pillGap='10px'
         borderTop='1px solid var(--tab-bar-border)'
         paddingTop={10}
-        zIndex={10}
+        zIndex={30}
       />
     </div>
   );

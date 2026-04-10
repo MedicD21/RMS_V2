@@ -59,11 +59,11 @@ export function SettingsScreen() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   return (
-    <div className='flex flex-col h-full z-[999] relative'>
+    <div className='flex flex-col h-full z-[2] relative'>
       {/* Header */}
       <Header>Settings</Header>
 
-      <div className='scroll-area flex-1 pb-8'>
+      <div className='scroll-area flex-1' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}>
         {/* Appearance */}
         <SectionHeader title='Appearance' />
         <div

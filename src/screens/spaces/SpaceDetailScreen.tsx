@@ -83,7 +83,7 @@ export function SpaceDetailScreen() {
       </Header>
 
       {/* Content */}
-      <div className='scroll-area flex-1 px-5 pb-6 z-[7]'>
+      <div className='scroll-area flex-1 px-5 z-[2]' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 120px)` }}>
         {!lastScan ? (
           /* No scans yet */
           <div className='flex flex-col items-center justify-center py-16 gap-6 text-center'>
@@ -370,7 +370,7 @@ export function SpaceDetailScreen() {
 
       {/* Action buttons */}
       <div
-        className='px-5 pb-1 pt-1 safe-bottom flex gap-3 z-[7]'
+        className='px-5 pb-1 pt-1 safe-bottom flex gap-3 z-[10]'
         style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 5px)` }}
       >
         <button
