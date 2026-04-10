@@ -13,6 +13,7 @@ import {
 } from "react-icons/md";
 import { GiOfficeChair } from "react-icons/gi";
 import { FaBoxOpen } from "react-icons/fa";
+import SplitText from "@/components/ui/SplitText";
 
 const ROOM_TYPES = Object.entries(ROOM_TYPE_LABELS) as [RoomType, string][];
 
@@ -53,7 +54,7 @@ export function AddSpaceScreen() {
   }
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
       <div
         className='flex items-center gap-3 translate-y-3 px-5'
@@ -82,7 +83,19 @@ export function AddSpaceScreen() {
           className='text-3xl font-bold'
           style={{ color: "var(--text-primary)" }}
         >
-          New Space
+          <SplitText
+            text='New Space'
+            className='text-3xl font-semibold text-center'
+            delay={50}
+            duration={1.25}
+            ease='power3.out'
+            splitType='chars'
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin='-100px'
+            textAlign='center'
+          />
         </h1>
       </div>
 

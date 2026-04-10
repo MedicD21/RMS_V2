@@ -12,6 +12,8 @@ Return this exact structure:
   ],
   "strengths": [<3-5 specific strength strings>],
   "weaknesses": [<3-5 specific weakness strings>],
+  "estimatedMinutes": <realistic integer estimate of how many minutes it would take an average person to fully reset and tidy this space>,
+  "resetSteps": [<5-8 clear, specific, ordered action steps to get this space tidy and organized — each step should be actionable and reference things actually visible in the photo>],
   "productCategories": [<3-5 Amazon search terms for organizational products that address the weaknesses>]
 }
 

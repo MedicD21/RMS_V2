@@ -55,6 +55,8 @@ export interface Scan {
   breakdownMetrics: BreakdownMetric[]
   strengths: string[]
   weaknesses: string[]
+  estimatedMinutes: number  // estimated time to reset the space
+  resetSteps: string[]      // ordered action steps to tidy the space
   productSuggestions: Product[]
   renderingUri?: string // Replicate output
 }
@@ -112,6 +114,8 @@ export interface SpaceAnalysisResponse {
   breakdownMetrics: BreakdownMetric[]
   strengths: string[]
   weaknesses: string[]
+  estimatedMinutes: number
+  resetSteps: string[]
   productCategories: string[]
 }
 

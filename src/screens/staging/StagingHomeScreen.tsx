@@ -8,7 +8,7 @@ export function StagingHomeScreen() {
   const { analyses } = useStagingStore();
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
       <div
         className='px-5'

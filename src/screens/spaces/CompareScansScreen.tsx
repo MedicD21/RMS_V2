@@ -51,7 +51,7 @@ export function CompareScansScreen() {
   const allMetricLabels = leftScan?.breakdownMetrics.map((m) => m.label) ?? [];
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
       <div
         className='flex items-center gap-3 px-5'

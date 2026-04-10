@@ -1,9 +1,195 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSpacesStore } from "@/store/spacesStore";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { AppLogo } from "@/components/ui/AppLogo";
-import { ROOM_TYPE_LABELS } from "@/types";
+import { ROOM_TYPE_LABELS, type Space } from "@/types";
+import SplitText from "@/components/ui/SplitText";
+
+const TIPS: Record<"low" | "mid" | "high", string[]> = {
+  low: [
+    "Start with one drawer. Small wins build momentum.",
+    "A 15-minute reset today beats a 3-hour overhaul later.",
+    "Clutter is just delayed decisions — make one now.",
+    "Pick the messiest corner and spend 10 minutes there.",
+  ],
+  mid: [
+    "You're making progress. Keep one surface always clear.",
+    "Good foundation — now tackle one weak spot per week.",
+    "Maintenance is easier than recovery. Stay consistent.",
+    "Label it, contain it, and you'll never lose it again.",
+  ],
+  high: [
+    "Your space is working for you. Nice work.",
+    "High score — now help someone else reset theirs.",
+    "A tidy space is a clear mind. Keep it up.",
+    "You've built great habits. Don't let busy weeks undo them.",
+  ],
+};
+
+function getTip(score: number): string {
+  const bucket = score <= 40 ? "low" : score <= 70 ? "mid" : "high";
+  const list = TIPS[bucket];
+  return list[Math.floor(Date.now() / 86400000) % list.length];
+}
+
+function HomeHealthCard({
+  spaces,
+  onWorstPress,
+}: {
+  spaces: Space[];
+  onWorstPress: (id: string) => void;
+}) {
+  const scannedSpaces = spaces.filter((s) => s.scans.length > 0);
+  if (scannedSpaces.length === 0) return null;
+
+  const avgScore = Math.round(
+    scannedSpaces.reduce((sum, s) => {
+      const last = s.scans[s.scans.length - 1];
+      return sum + (last?.score ?? 0);
+    }, 0) / scannedSpaces.length,
+  );
+
+  const worst = [...scannedSpaces].sort((a, b) => {
+    const aScore = a.scans[a.scans.length - 1]?.score ?? 0;
+    const bScore = b.scans[b.scans.length - 1]?.score ?? 0;
+    return aScore - bScore;
+  })[0];
+  const worstScore = worst.scans[worst.scans.length - 1]?.score ?? 0;
+
+  const tip = getTip(avgScore);
+
+  return (
+    <>
+      {/* Overall Home Health */}
+      <div
+        className='rounded-3xl p-5 flex items-center gap-5 mb-3'
+        style={{
+          background: "var(--surface)",
+          border: "1px solid var(--border)",
+          boxShadow: "var(--shadow-sm)",
+        }}
+      >
+        <ScoreRing score={avgScore} size='large' />
+        <div className='flex-1 min-w-0'>
+          <p
+            className='text-xs font-semibold uppercase tracking-widest mb-1'
+            style={{ color: "var(--text-muted)" }}
+          >
+            Home Health
+          </p>
+          <p
+            className='text-2xl font-extrabold leading-tight'
+            style={{ color: "var(--text-primary)" }}
+          >
+            {avgScore}/100
+          </p>
+          <p
+            className='text-xs mt-1 leading-relaxed'
+            style={{ color: "var(--text-secondary)" }}
+          >
+            Avg across {scannedSpaces.length} scanned space
+            {scannedSpaces.length !== 1 ? "s" : ""}
+          </p>
+        </div>
+      </div>
+
+      {/* Needs Attention */}
+      {worstScore < 75 && (
+        <button
+          onClick={() => onWorstPress(worst.id)}
+          className='w-full rounded-2xl px-4 py-3 flex items-center gap-3 mb-3 active:opacity-70 transition-opacity text-left'
+          style={{
+            background: "var(--score-low-bg)",
+            border: "1px solid var(--score-low)",
+          }}
+        >
+          <svg
+            width='18'
+            height='18'
+            viewBox='0 0 24 24'
+            fill='none'
+            style={{ flexShrink: 0 }}
+          >
+            <path
+              d='M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z'
+              stroke='var(--score-low)'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+          <div className='flex-1 min-w-0'>
+            <p
+              className='text-xs font-bold'
+              style={{ color: "var(--score-low)" }}
+            >
+              Needs Attention
+            </p>
+            <p
+              className='text-sm truncate'
+              style={{ color: "var(--text-secondary)" }}
+            >
+              {worst.name} — scoring {worstScore}
+            </p>
+          </div>
+          <svg
+            width='16'
+            height='16'
+            viewBox='0 0 24 24'
+            fill='none'
+            style={{ flexShrink: 0 }}
+          >
+            <path
+              d='M9 18l6-6-6-6'
+              stroke='var(--score-low)'
+              strokeWidth='2'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </button>
+      )}
+
+      {/* Quick tip */}
+      <div
+        className='rounded-2xl px-4 py-3 flex items-start gap-3 mb-4'
+        style={{
+          background: "var(--accent-muted)",
+          border: "1px solid var(--border)",
+        }}
+      >
+        <svg
+          width='16'
+          height='16'
+          viewBox='0 0 24 24'
+          fill='none'
+          style={{ flexShrink: 0, marginTop: 2 }}
+        >
+          <path
+            d='M12 2a7 7 0 015.292 11.584C16.54 14.647 16 15.746 16 17v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1c0-1.254-.54-2.353-1.292-3.416A7 7 0 0112 2z'
+            stroke='var(--accent)'
+            strokeWidth='1.8'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+          />
+          <path
+            d='M9 21h6'
+            stroke='var(--accent)'
+            strokeWidth='1.8'
+            strokeLinecap='round'
+          />
+        </svg>
+        <p
+          className='text-sm leading-relaxed italic'
+          style={{ color: "var(--text-secondary)" }}
+        >
+          {tip}
+        </p>
+      </div>
+    </>
+  );
+}
 
 function EmptyState({ onAdd }: { onAdd: () => void }) {
   return (
@@ -56,15 +242,20 @@ export function SpacesListScreen() {
     loadSpaces();
   }, [loadSpaces]);
 
-  const sorted = [...spaces].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  const sorted = useMemo(
+    () =>
+      [...spaces].sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      ),
+    [spaces],
   );
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
       <div
-        className='px-5 safe-top'
+        className='px-5 safe-top z-10'
         style={{ paddingTop: `calc(env(safe-area-inset-top) + 30px)` }}
       >
         <div className='flex items-center justify-between pb-4'>
@@ -74,16 +265,22 @@ export function SpacesListScreen() {
               className='text-3xl font-extrabold'
               style={{ color: "var(--text-primary)" }}
             >
-              Reset My Space
+              <SplitText
+                text='Reset My Space'
+                className='text-3xl font-semibold text-center'
+                delay={50}
+                duration={1.25}
+                ease='power3.out'
+                splitType='chars'
+                from={{ opacity: 0, y: 40 }}
+                to={{ opacity: 1, y: 0 }}
+                threshold={0.1}
+                rootMargin='-100px'
+                textAlign='center'
+              />
             </h1>
           </div>
         </div>
-        <h2
-          className='text-xl font-bold mb-2 px-2'
-          style={{ color: "var(--text-secondary)" }}
-        >
-          My Spaces{" "}
-        </h2>
       </div>
 
       {/* Content */}
@@ -91,6 +288,18 @@ export function SpacesListScreen() {
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
         <div className='scroll-area flex-1 px-5 pb-4'>
+          <HomeHealthCard
+            spaces={spaces}
+            onWorstPress={(id) => navigate(`/spaces/${id}`)}
+          />
+
+          <h2
+            className='text-base font-bold mb-3 px-1'
+            style={{ color: "var(--text-secondary)" }}
+          >
+            My Spaces
+          </h2>
+
           <div className='space-y-3'>
             {sorted.map((space) => {
               const lastScan = space.scans[space.scans.length - 1];

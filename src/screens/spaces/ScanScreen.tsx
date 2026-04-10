@@ -62,6 +62,8 @@ export function ScanScreen() {
         breakdownMetrics: analysis.breakdownMetrics,
         strengths: analysis.strengths,
         weaknesses: analysis.weaknesses,
+        estimatedMinutes: analysis.estimatedMinutes ?? 30,
+        resetSteps: analysis.resetSteps ?? [],
         productSuggestions: products,
       };
 
@@ -110,7 +112,7 @@ export function ScanScreen() {
   }
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
       <div
         className='flex items-center gap-3 px-5'

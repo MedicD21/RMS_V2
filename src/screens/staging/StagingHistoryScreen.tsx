@@ -20,7 +20,7 @@ export function StagingHistoryScreen() {
   }
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       <div
         className='flex items-center gap-3 px-5'
         style={{

@@ -70,7 +70,7 @@ export function StagingAnalysisScreen() {
   // Capture screen
   if (step === "capture") {
     return (
-      <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+      <div className='flex flex-col h-full'>
         <div
           className='flex items-center gap-3 px-5'
           style={{
@@ -237,7 +237,7 @@ export function StagingAnalysisScreen() {
 
   // Results screen
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       <div
         className='flex items-center gap-3 px-5'
         style={{

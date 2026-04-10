@@ -53,7 +53,7 @@ export function SpaceDetailScreen() {
     : null;
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
       <div
         className='flex items-center gap-3 px-5'
@@ -239,6 +239,64 @@ export function SpaceDetailScreen() {
                       style={{ color: "var(--text-secondary)" }}
                     >
                       {w}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Reset Plan */}
+            {(lastScan.resetSteps ?? []).length > 0 && (
+              <div
+                className='rounded-3xl p-5 space-y-4'
+                style={{
+                  background: "var(--surface)",
+                  border: "1px solid var(--border)",
+                }}
+              >
+                <div className='flex items-center justify-between'>
+                  <h2
+                    className='font-bold text-base'
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    Reset Plan
+                  </h2>
+                  {lastScan.estimatedMinutes != null && (
+                    <div
+                      className='flex items-center gap-1.5 px-3 py-1 rounded-full'
+                      style={{ background: "var(--accent-muted)" }}
+                    >
+                      <svg width='13' height='13' viewBox='0 0 24 24' fill='none'>
+                        <circle cx='12' cy='12' r='9' stroke='var(--accent)' strokeWidth='2' />
+                        <path d='M12 7v5l3 3' stroke='var(--accent)' strokeWidth='2' strokeLinecap='round' />
+                      </svg>
+                      <span
+                        className='text-xs font-semibold'
+                        style={{ color: "var(--accent)" }}
+                      >
+                        {lastScan.estimatedMinutes < 60
+                          ? `~${lastScan.estimatedMinutes} min`
+                          : `~${Math.round((lastScan.estimatedMinutes / 60) * 10) / 10} hr`}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                {(lastScan.resetSteps ?? []).map((step, i) => (
+                  <div key={i} className='flex gap-3 items-start'>
+                    <span
+                      className='w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5'
+                      style={{
+                        background: "var(--accent-muted)",
+                        color: "var(--accent)",
+                      }}
+                    >
+                      {i + 1}
+                    </span>
+                    <p
+                      className='text-sm leading-relaxed'
+                      style={{ color: "var(--text-secondary)" }}
+                    >
+                      {step}
                     </p>
                   </div>
                 ))}

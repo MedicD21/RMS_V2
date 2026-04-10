@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useSettingsStore } from "@/store/settingsStore";
 import { OPENROUTER_MODELS, REPLICATE_MODELS } from "@/types";
 import type { ThemeMode } from "@/types";
-import { AppLogo } from "@/components/ui/AppLogo";
-import ShinyText from "@/components/ui/ShinyText";
+import { Header } from "@/components/layout/Header";
 
 const THEME_OPTIONS: { value: ThemeMode; label: string }[] = [
   { value: "system", label: "System" },
@@ -60,32 +59,9 @@ export function SettingsScreen() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   return (
-    <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
+    <div className='flex flex-col h-full'>
       {/* Header */}
-      <div
-        className='px-5'
-        style={{
-          paddingTop: `calc(env(safe-area-inset-top) + 30px)`,
-          paddingBottom: 30,
-        }}
-      >
-        <div className='flex items-center gap-3'>
-          <AppLogo size={50} />
-          <h1
-            className='text-3xl font-extrabold'
-            style={{ color: "var(--text-primary)" }}
-          >
-            <ShinyText
-              text='Settings'
-              spread={500}
-              speed={2}
-              delay={4}
-              color='var(--text-primary)'
-              shineColor='#ffffff'
-            />
-          </h1>
-        </div>
-      </div>
+      <Header>Settings</Header>
 
       <div className='scroll-area flex-1 pb-8'>
         {/* Appearance */}
