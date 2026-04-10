@@ -1,8 +1,12 @@
 import { Outlet } from "react-router-dom";
 import PillNav from "@/components/ui/PillNav";
 import LightRays from "@/components/ui/LightRays";
+import { useTheme } from "@/hooks/useTheme";
 
 export function AppShell() {
+  const theme = useTheme();
+  const raysColor = theme === "dark" ? "#ffffff" : "#79285b";
+
   return (
     <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
       <div
@@ -15,7 +19,7 @@ export function AppShell() {
       >
         <LightRays
           raysOrigin='top-center'
-          raysColor='rgba(255, 255, 255, 0.08)'
+          raysColor={raysColor}
           raysSpeed={1}
           lightSpread={0.3}
           rayLength={3}

@@ -37,7 +37,7 @@ function SectionHeader({ title }: { title: string }) {
   return (
     <p
       className='px-5 pt-6 pb-2 text-xs font-bold uppercase tracking-wider'
-      style={{ color: "var(--text-muted)" }}
+      style={{ color: "var(--text-primary)" }}
     >
       {title}
     </p>
@@ -196,7 +196,7 @@ export function SettingsScreen() {
           }}
         >
           <SettingRow label='Version'>
-            <span className='text-sm' style={{ color: "var(--text-muted)" }}>
+            <span className='text-sm' style={{ color: "var(--text-primary)" }}>
               1.0.0
             </span>
           </SettingRow>
@@ -206,7 +206,7 @@ export function SettingsScreen() {
           >
             <p
               className='text-xs leading-relaxed'
-              style={{ color: "var(--text-muted)" }}
+              style={{ color: "var(--text-secondary)" }}
             >
               Reset My Space participates in the Amazon Associates Program.
               Product links may earn us a commission at no extra cost to you.

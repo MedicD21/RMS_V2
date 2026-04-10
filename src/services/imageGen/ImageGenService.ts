@@ -5,6 +5,47 @@ const REPLICATE_BASE = import.meta.env.DEV
 const API_TOKEN = import.meta.env.VITE_REPLICATE_API_TOKEN as string
 
 /**
+ * Build model-specific input payload.
+ * Different Replicate models have different field names and capabilities.
+ */
+function buildInput(model: string, imageBase64: string, prompt: string): Record<string, unknown> {
+  const fullPrompt = `Interior design photo: ${prompt}. Photorealistic, professional interior photography, warm lighting, clean and organized.`
+  const imageDataUrl = `data:image/jpeg;base64,${imageBase64}`
+
+  if (model.includes('flux-kontext')) {
+    // Flux Kontext: image-editing model, uses input_image
+    return {
+      prompt: fullPrompt,
+      input_image: imageDataUrl,
+      output_format: 'webp',
+      output_quality: 85,
+    }
+  }
+
+  if (model.includes('flux-dev')) {
+    // Flux Dev: text-to-image only, no image input
+    return {
+      prompt: fullPrompt,
+      num_inference_steps: 28,
+      guidance: 3.5,
+      output_format: 'webp',
+      output_quality: 85,
+    }
+  }
+
+  // flux-1.1-pro and others: standard image-to-image
+  return {
+    prompt: fullPrompt,
+    image: imageDataUrl,
+    num_inference_steps: 28,
+    guidance_scale: 3.5,
+    strength: 0.75,
+    output_format: 'webp',
+    output_quality: 85,
+  }
+}
+
+/**
  * Generate an optimized room rendering using Replicate.
  * Returns a URL to the generated image.
  */
@@ -13,10 +54,11 @@ export async function generateRoomRendering(
   prompt: string,
   model: string
 ): Promise<string> {
-  // Convert data URL to blob for upload
-  const base64 = imageDataUrl.replace(/^data:image\/\w+;base64,/, '')
+  if (!API_TOKEN) {
+    throw new Error('Replicate API token is missing. Add VITE_REPLICATE_API_TOKEN to .env')
+  }
 
-  // Use Replicate's prediction API
+  const base64 = imageDataUrl.replace(/^data:image\/\w+;base64,/, '')
   const [owner, name] = model.split('/')
   const createUrl = `${REPLICATE_BASE}/models/${owner}/${name}/predictions`
 
@@ -25,18 +67,10 @@ export async function generateRoomRendering(
     headers: {
       Authorization: `Bearer ${API_TOKEN}`,
       'Content-Type': 'application/json',
-      Prefer: 'wait', // wait up to 60s for result
+      Prefer: 'wait',
     },
     body: JSON.stringify({
-      input: {
-        prompt: `Interior design photo: ${prompt}. Photorealistic, professional interior photography, warm lighting, clean and organized.`,
-        image: `data:image/jpeg;base64,${base64}`,
-        num_inference_steps: 28,
-        guidance_scale: 3.5,
-        strength: 0.75,
-        output_format: 'webp',
-        output_quality: 85,
-      },
+      input: buildInput(model, base64, prompt),
     }),
   })
 
@@ -52,7 +86,6 @@ export async function generateRoomRendering(
     urls?: { get: string }
   }
 
-  // If still processing (Prefer: wait timed out), poll
   if (prediction.status === 'processing' || prediction.status === 'starting') {
     return await pollPrediction(prediction.id)
   }

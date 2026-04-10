@@ -13,7 +13,7 @@ import {
 } from "react-icons/md";
 import { GiOfficeChair } from "react-icons/gi";
 import { FaBoxOpen } from "react-icons/fa";
-import SplitText from "@/components/ui/SplitText";
+import { Header } from "@/components/layout/Header";
 
 const ROOM_TYPES = Object.entries(ROOM_TYPE_LABELS) as [RoomType, string][];
 
@@ -55,49 +55,7 @@ export function AddSpaceScreen() {
 
   return (
     <div className='flex flex-col h-full'>
-      {/* Header */}
-      <div
-        className='flex items-center gap-3 translate-y-3 px-5'
-        style={{
-          paddingTop: `calc(env(safe-area-inset-top) + 30px)`,
-          paddingBottom: `calc(env(safe-area-inset-bottom) + 30px)`,
-        }}
-      >
-        <button
-          onClick={() => navigate(-1)}
-          className='w-9 h-9 flex items-center justify-center rounded-xl active:opacity-60'
-          style={{ background: "var(--surface)" }}
-          aria-label='Back'
-        >
-          <svg width='18' height='18' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M15 18l-6-6 6-6'
-              stroke='var(--text-primary)'
-              strokeWidth='3'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </button>
-        <h1
-          className='text-3xl font-bold'
-          style={{ color: "var(--text-primary)" }}
-        >
-          <SplitText
-            text='New Space'
-            className='text-3xl font-semibold text-center'
-            delay={50}
-            duration={1.25}
-            ease='power3.out'
-            splitType='chars'
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin='-100px'
-            textAlign='center'
-          />
-        </h1>
-      </div>
+      <Header onBack={() => navigate(-1)}>New Space</Header>
 
       <div className='scroll-area flex-1 px-5 pb-8'>
         {/* Name input */}

@@ -104,7 +104,9 @@ export const OPENROUTER_MODELS = [
 ]
 
 export const REPLICATE_MODELS = [
-  { id: 'black-forest-labs/flux-1.1-pro', label: 'Flux 1.1 Pro (Default)' },
+  { id: 'black-forest-labs/flux-1.1-pro', label: 'Flux 1.1 Pro' },
+  { id: 'black-forest-labs/flux-kontext-pro', label: 'Flux Kontext Pro (Best for editing)' },
+  { id: 'black-forest-labs/flux-dev', label: 'Flux Dev (Faster/Cheaper)' },
 ]
 
 // ─── AI Response shapes ───────────────────────────────────────────────────────

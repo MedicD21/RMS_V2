@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useStagingStore } from "@/store/stagingStore";
-import { AppLogo } from "@/components/ui/AppLogo";
+import { Header } from "@/components/layout/Header";
 import { RiHomeGearFill } from "react-icons/ri";
 
 export function StagingHomeScreen() {
@@ -9,24 +9,7 @@ export function StagingHomeScreen() {
 
   return (
     <div className='flex flex-col h-full'>
-      {/* Header */}
-      <div
-        className='px-5'
-        style={{
-          paddingTop: `calc(env(safe-area-inset-top) + 30px)`,
-          paddingBottom: `calc(env(safe-area-inset-bottom) + 30px)`,
-        }}
-      >
-        <div className='flex items-center gap-3'>
-          <AppLogo size={50} />
-          <h1
-            className='text-3xl font-extrabold'
-            style={{ color: "var(--text-primary)" }}
-          >
-            Home Staging
-          </h1>
-        </div>
-      </div>
+      <Header>Home Staging</Header>
 
       {/* Hero */}
       <div className='flex-1 flex flex-col items-center justify-center px-6 gap-8'>

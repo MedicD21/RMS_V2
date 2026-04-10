@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSpacesStore } from "@/store/spacesStore";
+import { Header } from "@/components/layout/Header";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { MetricBar } from "@/components/ui/MetricBar";
 import { ProductCard } from "@/components/ui/ProductCard";
@@ -54,59 +55,30 @@ export function SpaceDetailScreen() {
 
   return (
     <div className='flex flex-col h-full'>
-      {/* Header */}
-      <div
-        className='flex items-center gap-3 px-5'
-        style={{
-          paddingTop: `calc(env(safe-area-inset-top) + 30px)`,
-          paddingBottom: `calc(env(safe-area-inset-bottom) + 30px)`,
-          background: "var(--bg)",
-        }}
-      >
-        <button
-          onClick={() => navigate("/spaces")}
-          className='w-9 h-9 flex items-center justify-center rounded-xl active:opacity-60'
-          style={{ background: "var(--surface)" }}
-          aria-label='Back'
-        >
-          <svg width='18' height='18' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M15 18l-6-6 6-6'
-              stroke='var(--text-primary)'
-              strokeWidth='3'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </button>
-        <div className='flex-1 min-w-0'>
-          <h1
-            className='text-xl font-bold truncate'
-            style={{ color: "var(--text-primary)" }}
+      <Header
+        onBack={() => navigate("/spaces")}
+        subtitle={ROOM_TYPE_LABELS[space.roomType]}
+        right={
+          <button
+            onClick={() => setShowDeleteConfirm(true)}
+            className='w-9 h-9 flex items-center justify-center rounded-xl active:opacity-60'
+            style={{ background: "var(--surface)" }}
+            aria-label='Delete space'
           >
-            {space.name}
-          </h1>
-          <p className='text-xs' style={{ color: "var(--text-secondary)" }}>
-            {ROOM_TYPE_LABELS[space.roomType]}
-          </p>
-        </div>
-        <button
-          onClick={() => setShowDeleteConfirm(true)}
-          className='w-9 h-9 flex items-center justify-center rounded-xl active:opacity-60'
-          style={{ background: "var(--surface)" }}
-          aria-label='Delete space'
-        >
-          <svg width='16' height='16' viewBox='0 0 24 24' fill='none'>
-            <path
-              d='M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6'
-              stroke='var(--score-low)'
-              strokeWidth='1.8'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-            />
-          </svg>
-        </button>
-      </div>
+            <svg width='16' height='16' viewBox='0 0 24 24' fill='none'>
+              <path
+                d='M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6'
+                stroke='var(--score-low)'
+                strokeWidth='1.8'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </button>
+        }
+      >
+        {space.name}
+      </Header>
 
       {/* Content */}
       <div className='scroll-area flex-1 px-5 pb-6'>

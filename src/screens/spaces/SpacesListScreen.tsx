@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSpacesStore } from "@/store/spacesStore";
+import { Header } from "@/components/layout/Header";
 import { ScoreRing } from "@/components/ui/ScoreRing";
-import { AppLogo } from "@/components/ui/AppLogo";
 import { ROOM_TYPE_LABELS, type Space } from "@/types";
-import SplitText from "@/components/ui/SplitText";
+import photo1 from "/Users/dustinschaaf/Code/RMS_V2/homeorg.png";
 
 const TIPS: Record<"low" | "mid" | "high", string[]> = {
   low: [
@@ -63,11 +63,11 @@ function HomeHealthCard({
     <>
       {/* Overall Home Health */}
       <div
-        className='rounded-3xl p-5 flex items-center gap-5 mb-3'
+        className='rounded-3xl flex items-center gap-5 mb-3'
         style={{
           background: "var(--surface)",
-          border: "1px solid var(--border)",
-          boxShadow: "var(--shadow-sm)",
+          border: "3px solid var(--border)",
+          boxShadow: "var(--shadow-lg)",
         }}
       >
         <ScoreRing score={avgScore} size='large' />
@@ -100,7 +100,7 @@ function HomeHealthCard({
           onClick={() => onWorstPress(worst.id)}
           className='w-full rounded-2xl px-4 py-3 flex items-center gap-3 mb-3 active:opacity-70 transition-opacity text-left'
           style={{
-            background: "var(--score-low-bg)",
+            background: "rgb(210, 43, 43, 0.3)",
             border: "1px solid var(--score-low)",
           }}
         >
@@ -113,7 +113,7 @@ function HomeHealthCard({
           >
             <path
               d='M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z'
-              stroke='var(--score-low)'
+              stroke='rgb(210, 43, 43)'
               strokeWidth='2'
               strokeLinecap='round'
               strokeLinejoin='round'
@@ -121,8 +121,11 @@ function HomeHealthCard({
           </svg>
           <div className='flex-1 min-w-0'>
             <p
-              className='text-xs font-bold'
-              style={{ color: "var(--score-low)" }}
+              className='text-sm font-bold'
+              style={{
+                color: "rgb(210, 43, 43)",
+                textShadow: "0 0 5px #d42b2b80",
+              }}
             >
               Needs Attention
             </p>
@@ -153,9 +156,9 @@ function HomeHealthCard({
 
       {/* Quick tip */}
       <div
-        className='rounded-2xl px-4 py-3 flex items-start gap-3 mb-4'
+        className='rounded-2xl px-4 py-3 flex items-center gap-3 mb-4'
         style={{
-          background: "var(--accent-muted)",
+          background: "var(--surface)",
           border: "1px solid var(--border)",
         }}
       >
@@ -168,14 +171,14 @@ function HomeHealthCard({
         >
           <path
             d='M12 2a7 7 0 015.292 11.584C16.54 14.647 16 15.746 16 17v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1c0-1.254-.54-2.353-1.292-3.416A7 7 0 0112 2z'
-            stroke='var(--accent)'
+            stroke='var(--text-secondary)'
             strokeWidth='1.8'
             strokeLinecap='round'
             strokeLinejoin='round'
           />
           <path
             d='M9 21h6'
-            stroke='var(--accent)'
+            stroke='var(--text-secondary)'
             strokeWidth='1.8'
             strokeLinecap='round'
           />
@@ -196,7 +199,7 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
     <div className='flex flex-col items-center justify-center h-full gap-6 px-8 text-center'>
       <div
         className='w-24 h-24 rounded-3xl flex items-center justify-center'
-        style={{ background: "var(--accent-muted)" }}
+        style={{ background: "var(--surface)" }}
       >
         <svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
           <path
@@ -253,41 +256,17 @@ export function SpacesListScreen() {
 
   return (
     <div className='flex flex-col h-full'>
-      {/* Header */}
-      <div
-        className='px-5 safe-top z-10'
-        style={{ paddingTop: `calc(env(safe-area-inset-top) + 30px)` }}
-      >
-        <div className='flex items-center justify-between pb-4'>
-          <div className='flex items-center gap-3'>
-            <AppLogo size={50} />
-            <h1
-              className='text-3xl font-extrabold'
-              style={{ color: "var(--text-primary)" }}
-            >
-              <SplitText
-                text='Reset My Space'
-                className='text-3xl font-semibold text-center'
-                delay={50}
-                duration={1.25}
-                ease='power3.out'
-                splitType='chars'
-                from={{ opacity: 0, y: 40 }}
-                to={{ opacity: 1, y: 0 }}
-                threshold={0.1}
-                rootMargin='-100px'
-                textAlign='center'
-              />
-            </h1>
-          </div>
-        </div>
-      </div>
+      <Header>Reset My Space</Header>
+      <img
+        className='opacity-75 w-screen rounded-xl scale-[140%] overflow-hidden overscroll-auto z-[0]'
+        src={photo1}
+      ></img>
 
       {/* Content */}
       {spaces.length === 0 ? (
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
-        <div className='scroll-area flex-1 px-5 pb-4'>
+        <div className='scroll-area flex-1 px-5 pb-4 z-[1] -mt-[25%]'>
           <HomeHealthCard
             spaces={spaces}
             onWorstPress={(id) => navigate(`/spaces/${id}`)}
@@ -374,7 +353,7 @@ export function SpacesListScreen() {
       {spaces.length > 0 && (
         <button
           onClick={() => navigate("/spaces/new")}
-          className='absolute bottom-20 right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:opacity-70 transition-opacity'
+          className='absolute bottom-20 right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:opacity-70 transition-opacity z-[4]'
           style={{ background: "var(--accent)" }}
           aria-label='Add space'
         >
