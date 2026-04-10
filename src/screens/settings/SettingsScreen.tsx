@@ -59,7 +59,7 @@ export function SettingsScreen() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   return (
-    <div className='flex flex-col h-full'>
+    <div className='flex flex-col h-full z-[999] relative'>
       {/* Header */}
       <Header>Settings</Header>
 
@@ -108,7 +108,7 @@ export function SettingsScreen() {
             <select
               value={openRouterModel}
               onChange={(e) => setOpenRouterModel(e.target.value)}
-              className='text-md rounded-lg px-2.5 py-1.5 outline-none'
+              className='text-md min-w-fit rounded-lg px-1 py-1.5 outline-none'
               style={{
                 background: "var(--bg)",
                 color: "var(--text-primary)",
@@ -128,7 +128,7 @@ export function SettingsScreen() {
             <select
               value={replicateModel}
               onChange={(e) => setReplicateModel(e.target.value)}
-              className='text-sm rounded-lg px-2.5 py-1.5 outline-none'
+              className='text-md min-w-fit rounded-lg py-1.5 outline-none'
               style={{
                 background: "var(--bg)",
                 color: "var(--text-primary)",

@@ -14,7 +14,7 @@ export function AppShell() {
           width: "100%",
           height: "100%",
           position: "absolute",
-          zIndex: 0,
+          zIndex: 4,
         }}
       >
         <LightRays
@@ -45,15 +45,16 @@ export function AppShell() {
         ]}
         ease='power2.easeOut'
         baseColor='var(--tab-bar-bg)'
-        activePillColor='var(--accent-hover)'
+        activePillColor='var(--surface)'
         activeTextColor='var(--text-primary)'
-        inactiveTextColor='var(--text-secondary)'
+        inactiveTextColor='var(--accent-hover)'
         hoverTextColor='var(--text-hover)'
         navHeight='42px'
         pillPadX='18px'
         pillGap='10px'
         borderTop='1px solid var(--tab-bar-border)'
         paddingTop={10}
+        zIndex={10}
       />
     </div>
   );

@@ -4,7 +4,8 @@ import { useSpacesStore } from "@/store/spacesStore";
 import { Header } from "@/components/layout/Header";
 import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ROOM_TYPE_LABELS, type Space } from "@/types";
-import photo1 from "/Users/dustinschaaf/Code/RMS_V2/homeorg.png";
+import photo1 from "/homeorg.png";
+import photo2 from "/stage.png";
 
 const TIPS: Record<"low" | "mid" | "high", string[]> = {
   low: [
@@ -171,21 +172,21 @@ function HomeHealthCard({
         >
           <path
             d='M12 2a7 7 0 015.292 11.584C16.54 14.647 16 15.746 16 17v1a2 2 0 01-2 2h-4a2 2 0 01-2-2v-1c0-1.254-.54-2.353-1.292-3.416A7 7 0 0112 2z'
-            stroke='var(--text-secondary)'
+            stroke='var(--text-primary)'
             strokeWidth='1.8'
             strokeLinecap='round'
             strokeLinejoin='round'
           />
           <path
             d='M9 21h6'
-            stroke='var(--text-secondary)'
+            stroke='var(--text-primary)'
             strokeWidth='1.8'
             strokeLinecap='round'
           />
         </svg>
         <p
           className='text-sm leading-relaxed italic'
-          style={{ color: "var(--text-secondary)" }}
+          style={{ color: "var(--text-primary)" }}
         >
           {tip}
         </p>
@@ -258,15 +259,20 @@ export function SpacesListScreen() {
     <div className='flex flex-col h-full'>
       <Header>Reset My Space</Header>
       <img
-        className='opacity-75 w-screen rounded-xl scale-[140%] overflow-hidden overscroll-auto z-[0]'
+        className='opacity-75 w-screen rounded-4xl border-2 border-slate-500 shadow-xl shadow-slate-500 scale-[140%] overflow-hidden overscroll-auto z-[2]'
         src={photo1}
       ></img>
+      <img
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10'
+        src={photo2}
+        alt='Background'
+      />
 
       {/* Content */}
       {spaces.length === 0 ? (
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
-        <div className='scroll-area flex-1 px-5 pb-4 z-[1] -mt-[25%]'>
+        <div className='scroll-area flex-1 px-5 pb-4 z-[3] -mt-[25%]'>
           <HomeHealthCard
             spaces={spaces}
             onWorstPress={(id) => navigate(`/spaces/${id}`)}
@@ -353,7 +359,7 @@ export function SpacesListScreen() {
       {spaces.length > 0 && (
         <button
           onClick={() => navigate("/spaces/new")}
-          className='absolute bottom-20 right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:opacity-70 transition-opacity z-[4]'
+          className='absolute bottom-12 right-8 w-14 h-14 rounded-full flex items-center justify-center shadow-lg active:opacity-70 transition-opacity z-[98]'
           style={{ background: "var(--accent)" }}
           aria-label='Add space'
         >

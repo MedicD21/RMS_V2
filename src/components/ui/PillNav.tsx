@@ -21,6 +21,7 @@ export interface PillNavProps {
   pillGap?: string;
   borderTop?: string;
   paddingTop?: number;
+  zIndex?: number;
 }
 
 const PillNav: React.FC<PillNavProps> = ({
@@ -36,6 +37,7 @@ const PillNav: React.FC<PillNavProps> = ({
   pillGap = "10px",
   borderTop = "1px solid var(--tab-bar-border)",
   paddingTop = 10,
+  zIndex = 10,
 }) => {
   const location = useLocation();
   const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
@@ -81,7 +83,11 @@ const PillNav: React.FC<PillNavProps> = ({
           0,
         );
         if (label) {
-          tl.to(label, { y: -(h + 8), duration: 2, ease, overwrite: "auto" }, 0);
+          tl.to(
+            label,
+            { y: -(h + 8), duration: 2, ease, overwrite: "auto" },
+            0,
+          );
         }
         if (hoverLabel) {
           gsap.set(hoverLabel, { y: Math.ceil(h + 100), opacity: 0 });
@@ -159,6 +165,7 @@ const PillNav: React.FC<PillNavProps> = ({
         borderTop,
         paddingTop,
         paddingBottom: `calc(env(safe-area-inset-bottom) + 10px)`,
+        zIndex,
       }}
     >
       <div

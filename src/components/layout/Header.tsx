@@ -11,7 +11,7 @@ interface HeaderProps {
 export function Header({ children, onBack, subtitle, right }: HeaderProps) {
   return (
     <div
-      className='flex items-center gap-3 px-5 z-[2] bg-[var(--bg)] rounded-3xl pt-6 pb-6'
+      className='flex items-center opacity-80 gap-3 px-5 z-[99] bg-[var(--bg)] rounded-3xl pt-6 pb-6'
       //   style={{
       //     paddingTop: `calc(env(safe-area-inset-top) + 30px)`,
       //     paddingBottom: 30,
