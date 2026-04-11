@@ -7,6 +7,7 @@ import { ROOM_TYPE_LABELS, type Space } from "@/types";
 import photo1 from "/homeorg.png";
 import photo2 from "/stage.png";
 import { useTheme } from "@/hooks/useTheme";
+import { MdOutlineAddBusiness } from "react-icons/md";
 
 const TIPS: Record<"low" | "mid" | "high", string[]> = {
   low: [
@@ -202,12 +203,15 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
     <div className='flex flex-col items-center justify-center text-center gap-4 z-[2]'>
       <div
         className='w-32 h-32 rounded-3xl flex items-center justify-center'
-        style={{ background: "var(--surface)" }}
+        style={{
+          background: "var(--surface)",
+          border: "1.6px solid var(--text-secondary)",
+        }}
       >
         <svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
           <path
             d='M3 9.5L12 3L21 9.5V20a1 1 0 01-1 1H15v-5h-6v5H4a1 1 0 01-1-1V9.5z'
-            stroke='var(--accent)'
+            stroke='var(--bg)'
             strokeWidth='1.8'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -223,7 +227,7 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
         </h2>
         <p
           className='text-sm leading-relaxed'
-          style={{ color: "var(--text-secondary)" }}
+          style={{ color: "var(--text-primary)" }}
         >
           Add your first space to start tracking and improving your
           organization.
@@ -231,9 +235,10 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
       </div>
       <button
         onClick={onAdd}
-        className='px-8 py-3.5 rounded-2xl font-semibold text-base active:opacity-70 transition-opacity'
-        style={{ background: "var(--accent)", color: "#fff" }}
+        className='flex gap-4 uppercase items-center align-center px-8 py-3.5 rounded-2xl font-bold text-base active:opacity-70 transition-opacity'
+        style={{ background: "var(--accent)", color: "var(--bg)" }}
       >
+        <MdOutlineAddBusiness className='h-6 w-6' />
         Add Your First Space
       </button>
     </div>
@@ -265,7 +270,7 @@ export function SpacesListScreen() {
         src={photo1}
       ></img>
       <img
-        className='absolute top-0 left-0 w-full h-full object-cover opacity-10'
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none'
         src={photo2}
         alt='Background'
       />
@@ -275,7 +280,7 @@ export function SpacesListScreen() {
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
         <div
-          className='scroll-area flex-1 px-5 z-[2] -mt-[25%]'
+          className='scroll-area flex-1 px-5 -mt-[25%]'
           style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 100px)` }}
         >
           <HomeHealthCard

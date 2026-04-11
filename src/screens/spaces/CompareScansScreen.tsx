@@ -55,7 +55,7 @@ export function CompareScansScreen() {
     <div className='flex flex-col h-full'>
       <Header onBack={() => navigate(-1)}>Compare Scans</Header>
 
-      <div className='scroll-area flex-1 px-5 space-y-5 z-[2]' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}>
+      <div className='scroll-area flex-1 px-5 space-y-5' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}>
         {/* Scan selectors */}
         <div className='grid grid-cols-2 gap-3 pt-4 z-[9]'>
           {[

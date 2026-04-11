@@ -1,7 +1,7 @@
 /* Design tokens — dark mode (default) */
 :root,
 [data-theme="dark"] {
-  --bg: #052d37;
+  --bg: rgb(5, 45, 55);
   --bg-deep: #1a2f40;
   --surface: #243d4a;
   --surface-raised: #2d4d5e;
@@ -25,8 +25,8 @@
 }
 
 [data-theme="light"] {
-  --bg: #fce0a9;
-  --bg-deep: #79285b;
+  --bg: rgb(252, 224, 169);
+  --bg-deep: rgb(121, 40, 91);
   --surface: #557980;
   --surface-raised: #c47a34;
   --accent: #34848d;

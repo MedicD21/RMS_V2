@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSpacesStore } from "@/store/spacesStore";
+import { useTheme } from "@/hooks/useTheme";
 import type { RoomType } from "@/types";
 import { ROOM_TYPE_LABELS } from "@/types";
 import {
@@ -14,6 +15,7 @@ import {
 import { GiOfficeChair } from "react-icons/gi";
 import { FaBoxOpen } from "react-icons/fa";
 import { Header } from "@/components/layout/Header";
+import photo2 from "/stage.png";
 
 const ROOM_TYPES = Object.entries(ROOM_TYPE_LABELS) as [RoomType, string][];
 
@@ -34,6 +36,7 @@ const CREATE_ICON: Record<string, React.ReactNode> = {
 export function AddSpaceScreen() {
   const navigate = useNavigate();
   const { addSpace } = useSpacesStore();
+  const theme = useTheme();
   const [name, setName] = useState("");
   const [roomType, setRoomType] = useState<RoomType>("bedroom");
 
@@ -56,12 +59,17 @@ export function AddSpaceScreen() {
   return (
     <div className='flex flex-col h-full'>
       <Header onBack={() => navigate(-1)}>New Space</Header>
+      <img
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[0] pointer-events-none'
+        src={photo2}
+        alt='Background'
+      />
 
       <div className='scroll-area flex-1 px-5 pb-8'>
         {/* Name input */}
         <div className='mb-6'>
           <label
-            className='block text-sm font-semibold mb-2'
+            className='block text-md font-semibold mt-2 mb-2'
             style={{ color: "var(--text-secondary)" }}
           >
             Space Name
@@ -75,8 +83,11 @@ export function AddSpaceScreen() {
             className='w-full px-4 py-3.5 rounded-2xl text-base font-medium outline-none transition-all'
             style={{
               background: "var(--surface)",
-              color: "var(--text-primary)",
-              border: "1.5px solid var(--border)",
+              color:
+                theme === "dark"
+                  ? "var(--text-primary)"
+                  : "var(--text-secondary)",
+              border: "1.5px solid var(--bg)",
             }}
             onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
             onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
@@ -139,7 +150,7 @@ export function AddSpaceScreen() {
           className='w-full text-xl py-6 rounded-2xl font-bold transition-opacity active:opacity-70'
           style={{
             background: name.trim() ? "var(--accent)" : "var(--border)",
-            color: name.trim() ? "#000" : "var(--text-muted)",
+            color: name.trim() ? "#000" : "var(--text-secondary)",
           }}
         >
           <span className='flex items-center justify-center gap-2'>

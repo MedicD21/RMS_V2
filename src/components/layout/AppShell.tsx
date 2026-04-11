@@ -14,7 +14,7 @@ export function AppShell() {
           width: "100%",
           height: "100%",
           position: "absolute",
-          zIndex: 1,
+          zIndex: 0,
         }}
       >
         <LightRays
@@ -33,7 +33,7 @@ export function AppShell() {
           saturation={2}
         />
       </div>
-      <main className='flex-1 overflow-hidden relative'>
+      <main className='flex-1 overflow-hidden relative' style={{ zIndex: 2 }}>
         <Outlet />
       </main>
 

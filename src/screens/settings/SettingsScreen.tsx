@@ -3,6 +3,7 @@ import { useSettingsStore } from "@/store/settingsStore";
 import { OPENROUTER_MODELS, REPLICATE_MODELS } from "@/types";
 import type { ThemeMode } from "@/types";
 import { Header } from "@/components/layout/Header";
+import photo2 from "/stage.png";
 
 const THEME_OPTIONS: { value: ThemeMode; label: string }[] = [
   { value: "system", label: "System" },
@@ -59,23 +60,34 @@ export function SettingsScreen() {
   const [showClearConfirm, setShowClearConfirm] = useState(false);
 
   return (
-    <div className='flex flex-col h-full z-[2] relative'>
+    <div className='flex flex-col h-full relative'>
       {/* Header */}
       <Header>Settings</Header>
+      <img
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-5 pointer-events-none'
+        src={photo2}
+        alt='Background'
+      />
 
-      <div className='scroll-area flex-1' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}>
+      <div
+        className='scroll-area flex-1'
+        style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}
+      >
         {/* Appearance */}
         <SectionHeader title='Appearance' />
         <div
           style={{
-            background: "var(--tab-bar-bg)",
-            borderTop: "1px solid var(--border)",
+            background:
+              theme === "light"
+                ? "rgba(252, 224, 169, 0.5)"
+                : "rgba(5, 45, 55, 0.5)",
+            borderTop: "2px solid var(--accent)",
           }}
         >
           <SettingRow label='Theme'>
             <div
               className='flex rounded-xl overflow-hidden'
-              style={{ border: "1px solid var(--border)" }}
+              style={{ border: "2px solid var(--accent)" }}
             >
               {THEME_OPTIONS.map((opt) => (
                 <button
@@ -100,8 +112,11 @@ export function SettingsScreen() {
         <SectionHeader title='AI Models' />
         <div
           style={{
-            background: "var(--tab-bar-bg)",
-            borderTop: "1px solid var(--border)",
+            background:
+              theme === "light"
+                ? "rgba(252, 224, 169, 0.5)"
+                : "rgba(5, 45, 55, 0.5)",
+            borderTop: "2px solid var(--accent)",
           }}
         >
           <SettingRow label='Vision Model'>
@@ -149,8 +164,11 @@ export function SettingsScreen() {
         <SectionHeader title='Integrations' />
         <div
           style={{
-            background: "var(--tab-bar-bg)",
-            borderTop: "1px solid var(--border)",
+            background:
+              theme === "light"
+                ? "rgba(252, 224, 169, 0.5)"
+                : "rgba(5, 45, 55, 0.5)",
+            borderTop: "2px solid var(--accent)",
           }}
         >
           <SettingRow label='Amazon PA API'>
@@ -174,8 +192,11 @@ export function SettingsScreen() {
         <SectionHeader title='Data' />
         <div
           style={{
-            background: "var(--tab-bar-bg)",
-            borderTop: "1px solid var(--border)",
+            background:
+              theme === "light"
+                ? "rgba(252, 224, 169, 0.5)"
+                : "rgba(5, 45, 55, 0.5)",
+            borderTop: "2px solid var(--accent)",
           }}
         >
           <button
@@ -191,8 +212,11 @@ export function SettingsScreen() {
         <SectionHeader title='About' />
         <div
           style={{
-            background: "var(--tab-bar-bg)",
-            borderTop: "1px solid var(--border)",
+            background:
+              theme === "light"
+                ? "rgba(252, 224, 169, 0.5)"
+                : "rgba(5, 45, 55, 0.5)",
+            borderTop: "2px solid var(--accent)",
           }}
         >
           <SettingRow label='Version'>

@@ -161,7 +161,7 @@ const PillNav: React.FC<PillNavProps> = ({
       aria-label='Primary'
       style={{
         ...cssVars,
-        background: baseColor,
+        background: "var(--bg)",
         borderTop,
         paddingTop,
         paddingBottom: `calc(env(safe-area-inset-bottom) + 10px)`,
@@ -172,7 +172,7 @@ const PillNav: React.FC<PillNavProps> = ({
         className='relative flex items-center rounded-full'
         style={{
           height: "var(--nav-h)",
-          background: "var(--base)",
+          background: "var(--tab-bar-bg)",
         }}
       >
         <ul

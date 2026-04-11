@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useStagingStore } from "@/store/stagingStore";
 import { Header } from "@/components/layout/Header";
-import { RiHomeGearFill } from "react-icons/ri";
+import { RiHomeSmileLine } from "react-icons/ri";
 import photo2 from "/stage.png";
 
 export function StagingHomeScreen() {
@@ -12,13 +12,13 @@ export function StagingHomeScreen() {
     <div className='flex flex-col h-full'>
       <Header>Home Staging</Header>
       <img
-        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[0]'
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 z-[0] pointer-events-none'
         src={photo2}
         alt='Background'
       />
 
       {/* Hero */}
-      <div className='flex-1 flex flex-col items-center justify-center z-[2]'>
+      <div className='flex-1 flex flex-col items-center justify-center text-center gap-4'>
         {/* Icon */}
         <div
           className='w-32 h-32 rounded-3xl flex items-center justify-center'
@@ -27,7 +27,7 @@ export function StagingHomeScreen() {
             border: "1.6px solid var(--text-secondary)",
           }}
         >
-          <RiHomeGearFill size={68} color='var(--tab-bar-bg)' />
+          <RiHomeSmileLine size={55} color='var(--tab-bar-bg)' />
         </div>
 
         {/* Copy */}
@@ -50,10 +50,10 @@ export function StagingHomeScreen() {
         {/* CTA */}
         <button
           onClick={() => navigate("/staging/analyze")}
-          className='w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-3 active:opacity-70 transition-opacity'
+          className='flex gap-4 items-center align-center uppercase px-8 py-3.5 rounded-2xl font-bold text-base active:opacity-70 transition-opacity'
           style={{
             background: "var(--accent)",
-            color: "var(--text-primary)",
+            color: "var(--bg)",
           }}
         >
           <svg width='20' height='20' viewBox='0 0 24 24' fill='none'>
