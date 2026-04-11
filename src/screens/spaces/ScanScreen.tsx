@@ -126,7 +126,10 @@ export function ScanScreen() {
         {/* Illustration */}
         <div
           className='w-32 h-32 rounded-3xl flex items-center justify-center'
-          style={{ background: "var(--surface)" }}
+          style={{
+            background: "var(--surface)",
+            border: "2px solid var(--border)",
+          }}
         >
           <svg width='56' height='56' viewBox='0 0 24 24' fill='none'>
             <path

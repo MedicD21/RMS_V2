@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useStagingStore } from "@/store/stagingStore";
 import { Header } from "@/components/layout/Header";
+import photo2 from "/stage.png";
 
 export function StagingHistoryScreen() {
   const navigate = useNavigate();
@@ -23,6 +24,11 @@ export function StagingHistoryScreen() {
   return (
     <div className='flex flex-col h-full'>
       <Header onBack={() => navigate(-1)}>Staging History</Header>
+      <img
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none z-[0]'
+        src={photo2}
+        alt='Background'
+      />
 
       {sorted.length === 0 ? (
         <div className='flex-1 flex items-center justify-center'>
@@ -31,7 +37,10 @@ export function StagingHistoryScreen() {
           </p>
         </div>
       ) : (
-        <div className='scroll-area flex-1 px-5 space-y-3' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}>
+        <div
+          className='scroll-area flex-1 px-5 space-y-3'
+          style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 80px)` }}
+        >
           {sorted.map((a) => (
             <div
               key={a.id}
@@ -45,7 +54,7 @@ export function StagingHistoryScreen() {
                 <img
                   src={a.photoUri}
                   alt='Room'
-                  className='w-full h-full object-cover opacity-80'
+                  className='w-full h-full object-cover'
                 />
               </div>
 
@@ -73,10 +82,10 @@ export function StagingHistoryScreen() {
                 <div className='flex gap-2 mt-3'>
                   <button
                     onClick={() => setConfirmId(a.id)}
-                    className='flex-1 py-2.5 rounded-xl text-sm font-semibold active:opacity-60'
+                    className='flex-1 py-2.5 rounded-xl text-md font-semibold'
                     style={{
-                      background: "var(--score-low-bg)",
-                      color: "var(--score-low)",
+                      background: "rgba(210, 43, 43, 0.5)",
+                      color: "#000",
                     }}
                   >
                     Delete

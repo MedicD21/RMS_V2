@@ -7,6 +7,7 @@ import { analyzeStaging } from "@/services/ai/AIService";
 import { generateRoomRendering } from "@/services/imageGen/ImageGenService";
 import { LoadingRing } from "@/components/ui/LoadingRing";
 import { BeforeAfterToggle } from "@/components/ui/BeforeAfterToggle";
+import photo2 from "/stage.png";
 
 type Step = "capture" | "analyzing" | "results" | "rendering";
 
@@ -100,18 +101,26 @@ export function StagingAnalysisScreen() {
           >
             Stage a Room
           </h1>
+          <img
+            className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none z-[0]'
+            src={photo2}
+            alt='Background'
+          />
         </div>
 
         <div className='flex-1 flex flex-col items-center justify-center px-5 gap-6'>
           <div
             className='w-32 h-32 rounded-3xl flex items-center justify-center'
-            style={{ background: "var(--surface)" }}
+            style={{
+              background: "var(--surface)",
+              border: "1.6px solid var(--text-secondary)",
+            }}
           >
             <svg width='56' height='56' viewBox='0 0 24 24' fill='none'>
               <path
                 d='M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z'
-                stroke='var(--accent)'
-                strokeWidth='1.8'
+                stroke='var(--bg)'
+                strokeWidth='1.5'
                 strokeLinecap='round'
                 strokeLinejoin='round'
               />
@@ -119,8 +128,8 @@ export function StagingAnalysisScreen() {
                 cx='12'
                 cy='13'
                 r='4'
-                stroke='var(--accent)'
-                strokeWidth='1.8'
+                stroke='var(--bg)'
+                strokeWidth='1.5'
               />
             </svg>
           </div>
@@ -220,6 +229,11 @@ export function StagingAnalysisScreen() {
         className='flex flex-col h-full items-center justify-center'
         style={{ background: "var(--bg)" }}
       >
+        <img
+          className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none z-[0]'
+          src={photo2}
+          alt='Background'
+        />
         {photoDataUrl && (
           <div className='w-full max-w-sm px-5 mb-6'>
             <img
@@ -267,6 +281,11 @@ export function StagingAnalysisScreen() {
         >
           Staging Report
         </h1>
+        <img
+          className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none z-[0]'
+          src={photo2}
+          alt='Background'
+        />
       </div>
 
       <div className='scroll-area flex-1 px-5 pb-6 space-y-5 fade-in'>

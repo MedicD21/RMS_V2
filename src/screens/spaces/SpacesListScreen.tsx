@@ -266,11 +266,11 @@ export function SpacesListScreen() {
     <div className='flex flex-col h-full'>
       <Header>Reset My Space</Header>
       <img
-        className='opacity-75 w-screen rounded-4xl border-2 border-slate-500 shadow-xl shadow-slate-500 scale-[140%] overflow-hidden overscroll-auto z-[0]'
+        className='opacity-75 w-screen rounded-4xl border-2 border-slate-500 shadow-xl shadow-slate-500 scale-[140%] overflow-hidden overscroll-auto z-[1]'
         src={photo1}
       ></img>
       <img
-        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none'
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none z-[0]'
         src={photo2}
         alt='Background'
       />
@@ -280,7 +280,7 @@ export function SpacesListScreen() {
         <EmptyState onAdd={() => navigate("/spaces/new")} />
       ) : (
         <div
-          className='scroll-area flex-1 px-5 -mt-[25%]'
+          className='scroll-area flex-1 px-5 -mt-[25%] z-[8]'
           style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 100px)` }}
         >
           <HomeHealthCard

@@ -9,6 +9,7 @@ import { BeforeAfterToggle } from "@/components/ui/BeforeAfterToggle";
 import { readPhotoAsDataUrl } from "@/hooks/useCamera";
 import { useTheme } from "@/hooks/useTheme";
 import { ROOM_TYPE_LABELS } from "@/types";
+import photo2 from "/stage.png";
 
 export function SpaceDetailScreen() {
   const { spaceId } = useParams<{ spaceId: string }>();
@@ -81,20 +82,31 @@ export function SpaceDetailScreen() {
       >
         {space.name}
       </Header>
+      <img
+        className='absolute top-0 left-0 w-full h-full object-cover opacity-10 pointer-events-none z-[0]'
+        src={photo2}
+        alt='Background'
+      />
 
       {/* Content */}
-      <div className='scroll-area flex-1 px-5' style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 120px)` }}>
+      <div
+        className='scroll-area flex-1 px-5'
+        style={{ paddingBottom: `calc(env(safe-area-inset-bottom) + 120px)` }}
+      >
         {!lastScan ? (
           /* No scans yet */
           <div className='flex flex-col items-center justify-center py-16 gap-6 text-center'>
             <div
               className='w-20 h-20 rounded-2xl flex items-center justify-center'
-              style={{ background: "var(--surface)" }}
+              style={{
+                background: "var(--accent)",
+                border: "2px solid #000",
+              }}
             >
               <svg width='36' height='36' viewBox='0 0 24 24' fill='none'>
                 <path
                   d='M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z'
-                  stroke='var(--accent)'
+                  stroke='var(--surface-raised)'
                   strokeWidth='1.8'
                   strokeLinecap='round'
                   strokeLinejoin='round'
@@ -103,7 +115,7 @@ export function SpaceDetailScreen() {
                   cx='12'
                   cy='13'
                   r='4'
-                  stroke='var(--accent)'
+                  stroke='var(--surface-raised)'
                   strokeWidth='1.8'
                 />
               </svg>
