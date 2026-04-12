@@ -7,7 +7,6 @@ import { MetricBar } from "@/components/ui/MetricBar";
 import { ProductCard } from "@/components/ui/ProductCard";
 import { BeforeAfterToggle } from "@/components/ui/BeforeAfterToggle";
 import { readPhotoAsDataUrl } from "@/hooks/useCamera";
-import { useTheme } from "@/hooks/useTheme";
 import { ROOM_TYPE_LABELS } from "@/types";
 import photo2 from "/stage.png";
 
@@ -15,7 +14,6 @@ export function SpaceDetailScreen() {
   const { spaceId } = useParams<{ spaceId: string }>();
   const navigate = useNavigate();
   const { spaces, deleteSpace } = useSpacesStore();
-  const theme = useTheme();
 
   const space = spaces.find((s) => s.id === spaceId);
   const lastScan = space?.scans[space.scans.length - 1];
@@ -71,7 +69,7 @@ export function SpaceDetailScreen() {
             <svg width='16' height='16' viewBox='0 0 24 24' fill='none'>
               <path
                 d='M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6'
-                stroke='var(--text-primary)'
+                stroke='var(--on-danger)'
                 strokeWidth='3'
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -100,13 +98,13 @@ export function SpaceDetailScreen() {
               className='w-20 h-20 rounded-2xl flex items-center justify-center'
               style={{
                 background: "var(--accent)",
-                border: "2px solid #000",
+                border: "2px solid var(--border-strong)",
               }}
             >
               <svg width='36' height='36' viewBox='0 0 24 24' fill='none'>
                 <path
                   d='M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z'
-                  stroke='var(--surface-raised)'
+                  stroke='var(--on-accent)'
                   strokeWidth='1.8'
                   strokeLinecap='round'
                   strokeLinejoin='round'
@@ -115,7 +113,7 @@ export function SpaceDetailScreen() {
                   cx='12'
                   cy='13'
                   r='4'
-                  stroke='var(--surface-raised)'
+                  stroke='var(--on-accent)'
                   strokeWidth='1.8'
                 />
               </svg>
@@ -250,7 +248,7 @@ export function SpaceDetailScreen() {
                   {lastScan.estimatedMinutes != null && (
                     <div
                       className='flex items-center gap-1.5 px-3 py-1 rounded-full'
-                      style={{ background: "var(--score-high)" }}
+                      style={{ background: "var(--score-high-bg)" }}
                     >
                       <svg
                         width='16'
@@ -262,32 +260,19 @@ export function SpaceDetailScreen() {
                           cx='12'
                           cy='12'
                           r='9'
-                          stroke={
-                            theme === "dark"
-                              ? "var(--bg)"
-                              : "var(--text-primary)"
-                          }
+                          stroke='var(--on-score-high)'
                           strokeWidth='2'
                         />
                         <path
                           d='M12 7v5l3 3'
-                          stroke={
-                            theme === "dark"
-                              ? "var(--bg)"
-                              : "var(--text-primary)"
-                          }
+                          stroke='var(--on-score-high)'
                           strokeWidth='2'
                           strokeLinecap='round'
                         />
                       </svg>
                       <span
                         className='text-xs font-semibold'
-                        style={{
-                          color:
-                            theme === "dark"
-                              ? "var(--bg)"
-                              : "var(--text-primary)",
-                        }}
+                        style={{ color: "var(--on-score-high)" }}
                       >
                         {lastScan.estimatedMinutes < 60
                           ? `~${lastScan.estimatedMinutes} min`
@@ -301,11 +286,8 @@ export function SpaceDetailScreen() {
                     <span
                       className='w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5'
                       style={{
-                        background: "var(--score-high)",
-                        color:
-                          theme === "dark"
-                            ? "var(--bg)"
-                            : "var(--text-primary)",
+                        background: "var(--score-high-bg)",
+                        color: "var(--on-score-high)",
                       }}
                     >
                       {i + 1}
@@ -388,7 +370,7 @@ export function SpaceDetailScreen() {
         <button
           onClick={() => navigate(`/spaces/${spaceId}/scan`)}
           className='flex-1 py-4 rounded-2xl font-bold text-base active:opacity-70 transition-opacity'
-          style={{ background: "var(--accent)", color: "#fff" }}
+          style={{ background: "var(--accent)", color: "var(--on-accent)" }}
         >
           New Scan
         </button>
@@ -411,7 +393,7 @@ export function SpaceDetailScreen() {
       {showDeleteConfirm && (
         <div
           className='absolute inset-0 flex items-end justify-center'
-          style={{ background: "rgba(0,0,0,0.6)", zIndex: 50 }}
+          style={{ background: "var(--overlay)", zIndex: 50 }}
           onClick={() => setShowDeleteConfirm(false)}
         >
           <div
@@ -434,7 +416,7 @@ export function SpaceDetailScreen() {
             <button
               onClick={handleDelete}
               className='w-full py-4 rounded-2xl font-bold text-base active:opacity-70'
-              style={{ background: "var(--score-low)", color: "#fff" }}
+              style={{ background: "var(--score-low)", color: "var(--on-danger)" }}
             >
               Delete Space
             </button>

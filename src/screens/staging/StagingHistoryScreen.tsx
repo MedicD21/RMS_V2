@@ -50,7 +50,10 @@ export function StagingHistoryScreen() {
                 border: "1px solid var(--border)",
               }}
             >
-              <div className='w-full h-36 bg-black flex items-center justify-center overflow-hidden'>
+              <div
+                className='w-full h-36 flex items-center justify-center overflow-hidden'
+                style={{ background: "var(--image-backdrop)" }}
+              >
                 <img
                   src={a.photoUri}
                   alt='Room'
@@ -84,8 +87,8 @@ export function StagingHistoryScreen() {
                     onClick={() => setConfirmId(a.id)}
                     className='flex-1 py-2.5 rounded-xl text-md font-semibold'
                     style={{
-                      background: "rgba(210, 43, 43, 0.5)",
-                      color: "#000",
+                      background: "var(--danger-bg)",
+                      color: "var(--danger)",
                     }}
                   >
                     Delete
@@ -101,7 +104,7 @@ export function StagingHistoryScreen() {
       {confirmId && (
         <div
           className='absolute inset-0 flex items-end justify-center'
-          style={{ background: "rgba(0,0,0,0.6)", zIndex: 50 }}
+          style={{ background: "var(--overlay)", zIndex: 50 }}
           onClick={() => setConfirmId(null)}
         >
           <div
@@ -127,7 +130,7 @@ export function StagingHistoryScreen() {
                 setConfirmId(null);
               }}
               className='w-full py-4 rounded-2xl font-bold text-base active:opacity-70'
-              style={{ background: "var(--score-low)", color: "#fff" }}
+              style={{ background: "var(--score-low)", color: "var(--on-danger)" }}
             >
               Delete
             </button>

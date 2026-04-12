@@ -59,7 +59,7 @@ export function ProductCard({ product }: ProductCardProps) {
           target='_blank'
           rel='noopener noreferrer'
           className='mt-auto block text-center text-xs font-semibold py-2 rounded-xl transition-opacity active:opacity-70'
-          style={{ background: "var(--accent)", color: "#fff" }}
+          style={{ background: "var(--accent)", color: "var(--on-accent)" }}
         >
           View on Amazon
         </a>

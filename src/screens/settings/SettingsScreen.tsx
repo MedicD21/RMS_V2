@@ -77,11 +77,8 @@ export function SettingsScreen() {
         <SectionHeader title='Appearance' />
         <div
           style={{
-            background:
-              theme === "light"
-                ? "rgba(252, 224, 169, 0.5)"
-                : "rgba(5, 45, 55, 0.5)",
-            borderTop: "2px solid var(--accent)",
+            background: "var(--section-bg)",
+            borderTop: "1px solid var(--border-strong)",
           }}
         >
           <SettingRow label='Theme'>
@@ -98,7 +95,9 @@ export function SettingsScreen() {
                     background:
                       theme === opt.value ? "var(--accent)" : "transparent",
                     color:
-                      theme === opt.value ? "#fff" : "var(--text-secondary)",
+                      theme === opt.value
+                        ? "var(--on-accent)"
+                        : "var(--text-secondary)",
                   }}
                 >
                   {opt.label}
@@ -112,11 +111,8 @@ export function SettingsScreen() {
         <SectionHeader title='AI Models' />
         <div
           style={{
-            background:
-              theme === "light"
-                ? "rgba(252, 224, 169, 0.5)"
-                : "rgba(5, 45, 55, 0.5)",
-            borderTop: "2px solid var(--accent)",
+            background: "var(--section-bg)",
+            borderTop: "1px solid var(--border-strong)",
           }}
         >
           <SettingRow label='Vision Model'>
@@ -164,11 +160,8 @@ export function SettingsScreen() {
         <SectionHeader title='Integrations' />
         <div
           style={{
-            background:
-              theme === "light"
-                ? "rgba(252, 224, 169, 0.5)"
-                : "rgba(5, 45, 55, 0.5)",
-            borderTop: "2px solid var(--accent)",
+            background: "var(--section-bg)",
+            borderTop: "1px solid var(--border-strong)",
           }}
         >
           <SettingRow label='Amazon PA API'>
@@ -192,11 +185,8 @@ export function SettingsScreen() {
         <SectionHeader title='Data' />
         <div
           style={{
-            background:
-              theme === "light"
-                ? "rgba(252, 224, 169, 0.5)"
-                : "rgba(5, 45, 55, 0.5)",
-            borderTop: "2px solid var(--accent)",
+            background: "var(--section-bg)",
+            borderTop: "1px solid var(--border-strong)",
           }}
         >
           <button
@@ -212,11 +202,8 @@ export function SettingsScreen() {
         <SectionHeader title='About' />
         <div
           style={{
-            background:
-              theme === "light"
-                ? "rgba(252, 224, 169, 0.5)"
-                : "rgba(5, 45, 55, 0.5)",
-            borderTop: "2px solid var(--accent)",
+            background: "var(--section-bg)",
+            borderTop: "1px solid var(--border-strong)",
           }}
         >
           <SettingRow label='Version'>
@@ -243,12 +230,12 @@ export function SettingsScreen() {
       {showClearConfirm && (
         <div
           className='absolute inset-0 flex items-end justify-center'
-          style={{ background: "rgba(0,0,0,0.6)", zIndex: 50 }}
+          style={{ background: "var(--overlay)", zIndex: 50 }}
           onClick={() => setShowClearConfirm(false)}
         >
           <div
             className='w-full rounded-t-3xl p-6 space-y-4'
-            style={{ background: "var(--tab-bar-bg)" }}
+            style={{ background: "var(--surface)" }}
             onClick={(e) => e.stopPropagation()}
           >
             <h3
@@ -267,7 +254,7 @@ export function SettingsScreen() {
             <button
               onClick={clearAllData}
               className='w-full py-4 rounded-2xl font-bold text-base active:opacity-70'
-              style={{ background: "var(--score-low)", color: "#fff" }}
+              style={{ background: "var(--score-low)", color: "var(--on-danger)" }}
             >
               Clear Everything
             </button>

@@ -24,10 +24,10 @@ export function StagingHomeScreen() {
           className='w-32 h-32 rounded-3xl flex items-center justify-center'
           style={{
             background: "var(--surface)",
-            border: "1.6px solid var(--text-secondary)",
+            border: "1.6px solid var(--border)",
           }}
         >
-          <RiHomeSmileLine size={55} color='var(--tab-bar-bg)' />
+          <RiHomeSmileLine size={55} color='var(--text-secondary)' />
         </div>
 
         {/* Copy */}
@@ -53,7 +53,7 @@ export function StagingHomeScreen() {
           className='flex gap-4 items-center align-center uppercase px-8 py-3.5 rounded-2xl font-bold text-base active:opacity-70 transition-opacity'
           style={{
             background: "var(--accent)",
-            color: "var(--bg)",
+            color: "var(--on-accent)",
           }}
         >
           <svg width='20' height='20' viewBox='0 0 24 24' fill='none'>

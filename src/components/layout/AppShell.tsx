@@ -5,7 +5,7 @@ import { useTheme } from "@/hooks/useTheme";
 
 export function AppShell() {
   const theme = useTheme();
-  const raysColor = theme === "dark" ? "#ffffff" : "#79285b";
+  const raysColor = theme === "dark" ? "#c9deea" : "#79a8ba";
 
   return (
     <div className='flex flex-col h-full' style={{ background: "var(--bg)" }}>
@@ -45,9 +45,9 @@ export function AppShell() {
         ]}
         ease='power2.easeOut'
         baseColor='var(--tab-bar-bg)'
-        activePillColor='var(--surface)'
-        activeTextColor='var(--text-primary)'
-        inactiveTextColor='var(--accent-hover)'
+        activePillColor='var(--accent)'
+        activeTextColor='var(--on-accent)'
+        inactiveTextColor='var(--text-secondary)'
         hoverTextColor='var(--text-hover)'
         navHeight='42px'
         pillPadX='18px'

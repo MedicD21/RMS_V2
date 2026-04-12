@@ -6,7 +6,6 @@ import { ScoreRing } from "@/components/ui/ScoreRing";
 import { ROOM_TYPE_LABELS, type Space } from "@/types";
 import photo1 from "/homeorg.png";
 import photo2 from "/stage.png";
-import { useTheme } from "@/hooks/useTheme";
 import { MdOutlineAddBusiness } from "react-icons/md";
 
 const TIPS: Record<"low" | "mid" | "high", string[]> = {
@@ -61,7 +60,6 @@ function HomeHealthCard({
   const worstScore = worst.scans[worst.scans.length - 1]?.score ?? 0;
 
   const tip = getTip(avgScore);
-  const theme = useTheme();
 
   return (
     <>
@@ -104,8 +102,8 @@ function HomeHealthCard({
           onClick={() => onWorstPress(worst.id)}
           className='w-full rounded-2xl px-4 py-3 flex items-center gap-3 mb-3 active:opacity-70 transition-opacity text-left'
           style={{
-            background: "rgb(210, 43, 43, 0.3)",
-            border: "1px solid #000000",
+            background: "var(--danger-bg)",
+            border: "1px solid var(--danger)",
           }}
         >
           <svg
@@ -117,7 +115,7 @@ function HomeHealthCard({
           >
             <path
               d='M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z'
-              stroke='rgb(210, 43, 43)'
+              stroke='var(--danger)'
               strokeWidth='2'
               strokeLinecap='round'
               strokeLinejoin='round'
@@ -126,10 +124,7 @@ function HomeHealthCard({
           <div className='flex-1 min-w-0'>
             <p
               className='text-sm font-bold'
-              style={{
-                color: theme === "dark" ? "var(--bg)" : "var(--text-primary)",
-                textShadow: "0 0 5px #d42b2b80",
-              }}
+              style={{ color: "var(--danger)" }}
             >
               Needs Attention
             </p>
@@ -205,13 +200,13 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
         className='w-32 h-32 rounded-3xl flex items-center justify-center'
         style={{
           background: "var(--surface)",
-          border: "1.6px solid var(--text-secondary)",
+          border: "1.6px solid var(--border)",
         }}
       >
         <svg width='44' height='44' viewBox='0 0 24 24' fill='none'>
           <path
             d='M3 9.5L12 3L21 9.5V20a1 1 0 01-1 1H15v-5h-6v5H4a1 1 0 01-1-1V9.5z'
-            stroke='var(--bg)'
+            stroke='var(--text-secondary)'
             strokeWidth='1.8'
             strokeLinecap='round'
             strokeLinejoin='round'
@@ -236,7 +231,7 @@ function EmptyState({ onAdd }: { onAdd: () => void }) {
       <button
         onClick={onAdd}
         className='flex gap-4 uppercase items-center align-center px-8 py-3.5 rounded-2xl font-bold text-base active:opacity-70 transition-opacity'
-        style={{ background: "var(--accent)", color: "var(--bg)" }}
+        style={{ background: "var(--accent)", color: "var(--on-accent)" }}
       >
         <MdOutlineAddBusiness className='h-6 w-6' />
         Add Your First Space
@@ -266,7 +261,11 @@ export function SpacesListScreen() {
     <div className='flex flex-col h-full'>
       <Header>Reset My Space</Header>
       <img
-        className='opacity-75 w-screen rounded-4xl border-2 border-slate-500 shadow-xl shadow-slate-500 scale-[140%] overflow-hidden overscroll-auto z-[1]'
+        className='opacity-75 w-screen rounded-4xl scale-[140%] overflow-hidden overscroll-auto z-[1]'
+        style={{
+          border: "2px solid var(--border)",
+          boxShadow: "var(--shadow-lg)",
+        }}
         src={photo1}
       ></img>
       <img
@@ -379,7 +378,7 @@ export function SpacesListScreen() {
           <svg width='24' height='24' viewBox='0 0 24 24' fill='none'>
             <path
               d='M12 5v14M5 12h14'
-              stroke='var(--text-primary)'
+              stroke='var(--on-accent)'
               strokeWidth='2.5'
               strokeLinecap='round'
             />

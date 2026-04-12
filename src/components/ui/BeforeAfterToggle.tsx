@@ -57,8 +57,8 @@ export function BeforeAfterToggle({
         <div
           className="absolute bottom-3 left-1/2 -translate-x-1/2 text-xs px-2 py-1 rounded-full"
           style={{
-            background: 'rgba(0,0,0,0.45)',
-            color: 'rgba(255,255,255,0.7)',
+            background: 'var(--overlay)',
+            color: 'var(--text-secondary)',
           }}
         >
           swipe to compare
@@ -80,7 +80,7 @@ export function BeforeAfterToggle({
             className="flex-1 py-2 rounded-lg text-sm font-semibold transition-all duration-200"
             style={{
               background: active ? 'var(--accent)' : 'transparent',
-              color: active ? '#fff' : 'var(--text-secondary)',
+              color: active ? 'var(--on-accent)' : 'var(--text-secondary)',
             }}
           >
             {label}

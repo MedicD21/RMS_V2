@@ -23,7 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>photo analysis</string>
+	<string>Reset My Space needs camera access to analyze your space for organization and staging insights.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Reset My Space needs photo library access to select and analyze photos of your space.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Reset My Space needs permission to save photos to your library.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

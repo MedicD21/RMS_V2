@@ -113,13 +113,13 @@ export function StagingAnalysisScreen() {
             className='w-32 h-32 rounded-3xl flex items-center justify-center'
             style={{
               background: "var(--surface)",
-              border: "1.6px solid var(--text-secondary)",
+              border: "1.6px solid var(--border)",
             }}
           >
             <svg width='56' height='56' viewBox='0 0 24 24' fill='none'>
               <path
                 d='M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z'
-                stroke='var(--bg)'
+                stroke='var(--text-secondary)'
                 strokeWidth='1.5'
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -128,7 +128,7 @@ export function StagingAnalysisScreen() {
                 cx='12'
                 cy='13'
                 r='4'
-                stroke='var(--bg)'
+                stroke='var(--text-secondary)'
                 strokeWidth='1.5'
               />
             </svg>
@@ -166,7 +166,7 @@ export function StagingAnalysisScreen() {
             <button
               onClick={() => handleCapture("camera")}
               className='w-full py-4 rounded-2xl font-bold text-base flex items-center justify-center gap-3 active:opacity-70'
-              style={{ background: "var(--accent)", color: "#fff" }}
+              style={{ background: "var(--accent)", color: "var(--on-accent)" }}
             >
               <svg width='20' height='20' viewBox='0 0 24 24' fill='none'>
                 <path

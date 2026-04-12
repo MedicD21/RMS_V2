@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSpacesStore } from "@/store/spacesStore";
-import { useTheme } from "@/hooks/useTheme";
 import type { RoomType } from "@/types";
 import { ROOM_TYPE_LABELS } from "@/types";
 import {
@@ -36,7 +35,6 @@ const CREATE_ICON: Record<string, React.ReactNode> = {
 export function AddSpaceScreen() {
   const navigate = useNavigate();
   const { addSpace } = useSpacesStore();
-  const theme = useTheme();
   const [name, setName] = useState("");
   const [roomType, setRoomType] = useState<RoomType>("bedroom");
 
@@ -83,11 +81,8 @@ export function AddSpaceScreen() {
             className='w-full px-4 py-3.5 rounded-2xl text-base font-medium outline-none transition-all'
             style={{
               background: "var(--surface)",
-              color:
-                theme === "dark"
-                  ? "var(--text-primary)"
-                  : "var(--text-secondary)",
-              border: "1.5px solid var(--bg)",
+              color: "var(--text-primary)",
+              border: "1.5px solid var(--border)",
             }}
             onFocus={(e) => (e.target.style.borderColor = "var(--accent)")}
             onBlur={(e) => (e.target.style.borderColor = "var(--border)")}
@@ -109,16 +104,16 @@ export function AddSpaceScreen() {
                 <button
                   key={type}
                   onClick={() => setRoomType(type)}
-                  className='flex items-center gap-3 px-4 py-3.5 rounded-2xl text-left transition-all active:opacity-70 active:shadow-xl active:shadow-accent/30'
+                  className='flex items-center gap-3 px-4 py-3.5 rounded-2xl text-left transition-all active:opacity-70'
                   style={{
                     background: active
-                      ? "var(--accent-hover)"
+                      ? "var(--accent-muted)"
                       : "var(--surface)",
-                    border: `1.5px solid ${active ? "var(--tab-bar-bg)" : "var(--border)"}`,
+                    border: `1.5px solid ${active ? "var(--accent)" : "var(--border)"}`,
                     color: active
-                      ? "var(--text-secondary)"
+                      ? "var(--text-primary)"
                       : "var(--text-primary)",
-                    transform: active ? "scale(1.05)" : "none",
+                    transform: active ? "scale(1.02)" : "none",
                     animation: active
                       ? "fade-in 0.8s ease-out forwards"
                       : "none",
@@ -129,7 +124,7 @@ export function AddSpaceScreen() {
                     className='text-sm font-semibold'
                     style={{
                       color: active
-                        ? "var(--text-secondary)"
+                        ? "var(--text-primary)"
                         : "var(--text-primary)",
                     }}
                   >
@@ -150,7 +145,7 @@ export function AddSpaceScreen() {
           className='w-full text-xl py-6 rounded-2xl font-bold transition-opacity active:opacity-70'
           style={{
             background: name.trim() ? "var(--accent)" : "var(--border)",
-            color: name.trim() ? "#000" : "var(--text-secondary)",
+            color: name.trim() ? "var(--on-accent)" : "var(--text-muted)",
           }}
         >
           <span className='flex items-center justify-center gap-2'>
